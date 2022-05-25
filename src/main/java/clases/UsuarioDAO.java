@@ -33,6 +33,38 @@ public class UsuarioDAO {
 		this.password = password;
 	}
 
+	public boolean añadirLocalidad(String s) {
+		if (localidadesBusqueda.contains(s)) {
+			return false;
+		}
+		this.localidadesBusqueda.add(s);
+		return true;
+	}
+
+	public boolean quitarLocalidad(String s) {
+		if (!localidadesBusqueda.contains(s)) {
+			return false;
+		}
+		this.localidadesBusqueda.remove(s);
+		return true;
+	}
+
+	public boolean añadirPosicion(PosicionDAO p) {
+		if (posicionesBusqueda.contains(p)) {
+			return false;
+		}
+		this.posicionesBusqueda.add(p);
+		return true;
+	}
+
+	public boolean quitarPosicion(PosicionDAO p) {
+		if (!posicionesBusqueda.contains(p)) {
+			return false;
+		}
+		this.posicionesBusqueda.remove(p);
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "UsuarioDAO [nombre=" + nombre + ", email=" + email + ", password=" + password + ", localidadesBusqueda="
