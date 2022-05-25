@@ -33,22 +33,6 @@ public class UsuarioDAO {
 		this.password = password;
 	}
 
-	public ArrayList<String> getLocalidadesBusqueda() {
-		return localidadesBusqueda;
-	}
-
-	public void setLocalidadesBusqueda(ArrayList<String> localidadesBusqueda) {
-		this.localidadesBusqueda = localidadesBusqueda;
-	}
-
-	public ArrayList<PosicionDAO> getPosicionesBusqueda() {
-		return posicionesBusqueda;
-	}
-
-	public void setPosicionesBusqueda(ArrayList<PosicionDAO> posicionesBusqueda) {
-		this.posicionesBusqueda = posicionesBusqueda;
-	}
-
 	@Override
 	public String toString() {
 		return "UsuarioDAO [nombre=" + nombre + ", email=" + email + ", password=" + password + ", localidadesBusqueda="
