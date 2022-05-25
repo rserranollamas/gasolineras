@@ -1,6 +1,12 @@
 package clases;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.TreeSet;
+
+import com.google.gson.Gson;
+
+import utils.HttpGet;
 
 public class UsuarioDAO {
 	private String nombre;
@@ -8,6 +14,7 @@ public class UsuarioDAO {
 	private String password;
 	private ArrayList<String> localidadesBusqueda;
 	private ArrayList<PosicionDAO> posicionesBusqueda;
+	private TreeSet<ListaEESSPrecio> gasolineras;
 
 	public String getNombre() {
 		return nombre;
@@ -63,6 +70,26 @@ public class UsuarioDAO {
 		}
 		this.posicionesBusqueda.remove(p);
 		return true;
+	}
+
+	public TreeSet<ListaEESSPrecio> listarMisGasolineras() {
+
+		try {
+			// Obtenemos los datos de la web del Ministerio y los guardamos en un String
+			String json = (HttpGet.httpGet(
+					"https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/"));
+			// Creamos un objeto Gson
+			Gson gson = new Gson();
+			// Convertimos el json en objeto (clase Gasolineras.class)
+			Gasolineras datos = gson.fromJson(json, Gasolineras.class);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return gasolineras;
+
 	}
 
 	@Override
