@@ -94,6 +94,12 @@ public class UsuarioDAO {
 			Gson gson = new Gson();
 			// Convertimos el json en objeto (clase Gasolineras.class)
 			ListadoGasolineras datosGasolineras = gson.fromJson(json, ListadoGasolineras.class);
+			for (short i = 0; i < datosGasolineras.getListaEstaciones().size(); i++) {
+				if (this.localidadesBusqueda.contains(datosGasolineras.getListaEstaciones().get(i).getLocalidad())) {
+					Gasolinera gasolinera = datosGasolineras.getListaEstaciones().get(i);
+					gasolineras.add(gasolinera);
+				}
+			}
 		} catch (KeyManagementException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
