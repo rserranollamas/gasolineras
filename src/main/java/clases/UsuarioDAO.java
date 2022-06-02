@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.TreeSet;
 
 import com.google.gson.Gson;
@@ -19,6 +18,7 @@ public class UsuarioDAO {
 	private HashSet<PosicionDAO> posicionesBusqueda;
 
 	public UsuarioDAO() {
+		this.localidadesBusqueda = new HashSet<String>();
 	}
 
 	public UsuarioDAO(String nombre, String email, String password) {
@@ -26,8 +26,6 @@ public class UsuarioDAO {
 		this.nombre = nombre;
 		this.email = email;
 		this.password = password;
-		this.localidadesBusqueda = new HashSet<String>();
-		this.posicionesBusqueda = new HashSet<PosicionDAO>();
 	}
 
 	public String getNombre() {
@@ -97,34 +95,10 @@ public class UsuarioDAO {
 			// Convertimos el json en objeto (clase Gasolineras.class)
 			ListadoGasolineras datosGasolineras = gson.fromJson(json, ListadoGasolineras.class);
 			for (short i = 0; i < datosGasolineras.getListaEstaciones().size(); i++) {
-				Gasolinera gasolinera = datosGasolineras.getListaEstaciones().get(i);
 				if (this.localidadesBusqueda.contains(datosGasolineras.getListaEstaciones().get(i).getLocalidad())) {
+					Gasolinera gasolinera = datosGasolineras.getListaEstaciones().get(i);
 					gasolineras.add(gasolinera);
 				}
-
-				Iterator it = this.posicionesBusqueda.iterator();
-
-				while (it.hasNext()) {
-					PosicionDAO posicionUsuario = (PosicionDAO) it.next();
-					float latitudUsuario = (float) Math.toRadians(posicionUsuario.getLatitud());
-					float longitudUsuario = (float) Math.toRadians(posicionUsuario.getLongitud());
-					float latitudGasolinera = (float) Math
-							.toRadians(datosGasolineras.getListaEstaciones().get(i).getLatitud());
-					float longitudGasolinera = (float) Math
-							.toRadians(datosGasolineras.getListaEstaciones().get(i).getLongitud());
-
-					float radioTierra = (float) 6378.1; // Kilómetros
-
-					float distancia = (float) (radioTierra * Math
-							.acos(Math.sin(latitudUsuario) * Math.sin(latitudGasolinera) + Math.cos(latitudUsuario)
-									* Math.cos(latitudGasolinera) * Math.cos(longitudUsuario - longitudGasolinera)));
-
-					if (distancia < posicionUsuario.getRadioKm()) {
-						gasolineras.add(gasolinera);
-					}
-
-				}
-
 			}
 		} catch (KeyManagementException e) {
 			// TODO Auto-generated catch block
