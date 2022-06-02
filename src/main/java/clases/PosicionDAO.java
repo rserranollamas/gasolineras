@@ -1,16 +1,15 @@
 package clases;
 
 public class PosicionDAO {
-	private float longitud;
 	private float latitud;
+	private float longitud;
 	private short radioKm;
 
-	public float getLongitud() {
-		return longitud;
-	}
-
-	public void setLongitud(float longitud) {
+	public PosicionDAO(float latitud, float longitud, short radioKm) {
+		super();
+		this.latitud = latitud;
 		this.longitud = longitud;
+		this.radioKm = radioKm;
 	}
 
 	public float getLatitud() {
@@ -19,6 +18,14 @@ public class PosicionDAO {
 
 	public void setLatitud(float latitud) {
 		this.latitud = latitud;
+	}
+
+	public float getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(float longitud) {
+		this.longitud = longitud;
 	}
 
 	public short getRadioKm() {
@@ -31,7 +38,7 @@ public class PosicionDAO {
 
 	@Override
 	public String toString() {
-		return "PosicionDAO [longitud=" + longitud + ", latitud=" + latitud + ", radioKm=" + radioKm + "]";
+		return "PosicionDAO [latitud=" + latitud + ", longitud=" + longitud + ", radioKm=" + radioKm + "]";
 	}
 
 }
