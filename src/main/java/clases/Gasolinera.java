@@ -261,6 +261,9 @@ public class Gasolinera implements Comparable<Gasolinera> {
 	}
 
 	public int compareTo(Gasolinera o) {
+		if (this.gasolina95E5.compareTo(o.gasolina95E5) == 0) {
+			return this.rotulo.compareTo(o.rotulo);
+		}
 		return this.gasolina95E5.compareTo(o.gasolina95E5);
 	}
 
