@@ -151,7 +151,7 @@ public class UsuarioDAO {
 		ConexionBD.desconectar();
 	}
 
-	public boolean aÃ±adirLocalidad(String s) {
+	public boolean añadirLocalidad(String s) {
 		if (this.localidadesBusqueda.contains(s)) {
 			return false;
 		}
@@ -167,7 +167,7 @@ public class UsuarioDAO {
 		return true;
 	}
 
-	public boolean aÃ±adirPosicion(PosicionDAO p) throws SQLException {
+	public boolean añadirPosicion(PosicionDAO p) throws SQLException {
 		if (this.posicionesBusqueda.contains(p)) {
 			return false;
 		}
