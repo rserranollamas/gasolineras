@@ -85,7 +85,7 @@ public class UsuarioDAO {
 
 		} else {
 			ConexionBD.desconectar();
-			throw new UsuarioNoExisteException("No existe ningún usuario con el DNI indicado");
+			throw new UsuarioNoExisteException("No existe ningun usuario con el DNI indicado");
 
 		}
 		ConexionBD.desconectar();
@@ -217,7 +217,7 @@ public class UsuarioDAO {
 					float longitudGasolinera = (float) Math
 							.toRadians(datosGasolineras.getListaEstaciones().get(i).getLongitud());
 
-					float radioTierra = (float) 6378.1; // Kilómetros
+					float radioTierra = (float) 6378.1; // Kilometros
 
 					float distancia = (float) (radioTierra * Math
 							.acos(Math.sin(latitudUsuario) * Math.sin(latitudGasolinera) + Math.cos(latitudUsuario)
