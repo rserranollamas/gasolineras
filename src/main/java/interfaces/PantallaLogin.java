@@ -59,12 +59,12 @@ public class PantallaLogin extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				String password = new String(campoPassword.getPassword());
 				try {
-					UsuarioDAO usuario = new UsuarioDAO(dni, password);
-					JOptionPane.showMessageDialog(ventana, "Bienvenid@ " + usuario.getNombre(),
+					ventana.usuarioLogado = new UsuarioDAO(dni, password);
+					JOptionPane.showMessageDialog(ventana, "Bienvenid@ " + ventana.usuarioLogado.getNombre(),
 							"Se ha iniciado la sesión con éxito", JOptionPane.INFORMATION_MESSAGE);
 
 					PantallaPrincipal principal = new PantallaPrincipal(ventana);
-					ventana.irAPantalla(NombrePantalla.PRINCIPAL,"PRINCIPAL");
+					ventana.irAPantalla(NombrePantalla.BIENVENIDA,"HOLA "+ventana.usuarioLogado.getNombre());
 
 				} catch (SQLException | PassIncorrectoException | UsuarioNoExisteException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
