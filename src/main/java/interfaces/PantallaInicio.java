@@ -25,6 +25,7 @@ import java.awt.event.KeyEvent;
 public class PantallaInicio extends JPanel {
 	private Ventana ventana;
 	private JTextField campoDni;
+	private JButton botonContinuar;
 
 	public PantallaInicio(Ventana v, String mensaje) {
 		this.ventana = v;
@@ -63,24 +64,11 @@ public class PantallaInicio extends JPanel {
 		gbc_labelDni.gridy = 4;
 		add(labelDni, gbc_labelDni);
 
-		final JButton botonContinuar = new JButton("CONTINUAR");
-		botonContinuar.setEnabled(false);
-
-		GridBagConstraints gbc_botonContinuar = new GridBagConstraints();
-		gbc_botonContinuar.insets = new Insets(0, 0, 5, 5);
-		gbc_botonContinuar.gridx = 11;
-		gbc_botonContinuar.gridy = 6;
-		add(botonContinuar, gbc_botonContinuar);
-
 		campoDni = new JTextField();
 		campoDni.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (campoDni.getText().isBlank()) {
-					botonContinuar.setEnabled(false);
-
-				}
-				botonContinuar.setEnabled(true);
+				habilitarContinuar();
 			}
 		});
 		GridBagConstraints gbc_campoDni = new GridBagConstraints();
@@ -90,6 +78,15 @@ public class PantallaInicio extends JPanel {
 		gbc_campoDni.gridy = 4;
 		add(campoDni, gbc_campoDni);
 		campoDni.setColumns(10);
+
+		botonContinuar = new JButton("CONTINUAR");
+		botonContinuar.setEnabled(false);
+
+		GridBagConstraints gbc_botonContinuar = new GridBagConstraints();
+		gbc_botonContinuar.insets = new Insets(0, 0, 5, 5);
+		gbc_botonContinuar.gridx = 11;
+		gbc_botonContinuar.gridy = 6;
+		add(botonContinuar, gbc_botonContinuar);
 
 		botonContinuar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -107,11 +104,17 @@ public class PantallaInicio extends JPanel {
 						e1.printStackTrace();
 						ventana.irAPantalla(NombrePantalla.REGISTRO, dni);
 					}
-
 				}
-
 			}
 		});
 
+	}
+
+	public void habilitarContinuar() {
+		if (campoDni.getText().isBlank()) {
+			botonContinuar.setEnabled(false);
+		} else {
+			botonContinuar.setEnabled(true);
+		}
 	}
 }
