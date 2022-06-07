@@ -40,6 +40,9 @@ public class Ventana extends JFrame {
 		case LOGIN:
 			this.pantallaPrincipal.contenedor.add(new PantallaLogin(this, mensaje), BorderLayout.CENTER);
 			break;
+		case BIENVENIDA:
+			this.pantallaPrincipal.contenedor.add(new PantallaBienvenida(this, mensaje), BorderLayout.CENTER);
+			break;
 		}
 		this.pantallaPrincipal.contenedor.repaint();
 		this.pantallaPrincipal.contenedor.revalidate();
