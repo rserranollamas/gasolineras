@@ -29,7 +29,7 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * Este constructor va hacer que persista en BBDD el usuario que estoy creando
+	 * Este constructor hará que persista en BBDD el usuario que estoy creando
 	 * 
 	 * @param dni      dni del usuario
 	 * @param nombre   nombre del usuario
@@ -59,7 +59,8 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * Este constructor va a consultar en la BBDD al usuario a partir de su DNI y passwotd
+	 * Este constructor va a consultar en la BBDD al usuario a partir de su DNI y password
+	 * 
 	 * @param dni dni del usuario
 	 * @param password password del usuario
 	 * @throws SQLException
@@ -89,6 +90,29 @@ public class UsuarioDAO {
 
 		}
 		ConexionBD.desconectar();
+	}
+	
+	/**
+	 * Este constructor va a consultar en la BBDD al usuario a partir de su DNI
+	 * 
+	 * @param dni dni del usuario
+	 * @throws SQLException
+	 * @throws UsuarioNoExisteException
+	 */
+	
+	public UsuarioDAO(String dni) throws SQLException, UsuarioNoExisteException {
+		Statement smt=ConexionBD.conectar();
+		ResultSet cursor=smt.executeQuery("SELECT * FROM usuario WHERE dni='"+dni+"'");
+		if(cursor.next()) {
+			this.dni=cursor.getString("dni");
+			this.nombre=cursor.getString("nombre");
+			this.email=cursor.getString("email");
+		}
+		else {
+			ConexionBD.desconectar();
+			throw new UsuarioNoExisteException("No existe ningun usuario con el DNI indicado");
+			
+		}
 	}
 
 	public String getDni() {
@@ -217,7 +241,7 @@ public class UsuarioDAO {
 					float longitudGasolinera = (float) Math
 							.toRadians(datosGasolineras.getListaEstaciones().get(i).getLongitud());
 
-					float radioTierra = (float) 6378.1; // Kilometros
+					float radioTierra = (float) 6378.1; // Kilómetros
 
 					float distancia = (float) (radioTierra * Math
 							.acos(Math.sin(latitudUsuario) * Math.sin(latitudGasolinera) + Math.cos(latitudUsuario)
