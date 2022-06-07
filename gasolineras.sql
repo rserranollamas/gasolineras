@@ -25,3 +25,6 @@ CREATE TABLE localidad (
 PRIMARY KEY(nombre,usuario), 
 FOREIGN KEY(usuario) REFERENCES usuario(dni)
 );
+
+SELECT * FROM usuario;
+DELETE FROM usuario WHERE dni='43120926C';
