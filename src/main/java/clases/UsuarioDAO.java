@@ -106,12 +106,10 @@ public class UsuarioDAO {
 		if(cursor.next()) {
 			this.dni=cursor.getString("dni");
 			this.nombre=cursor.getString("nombre");
-			this.email=cursor.getString("email");
 		}
 		else {
 			ConexionBD.desconectar();
-			throw new UsuarioNoExisteException("No existe ningun usuario con el DNI indicado");
-			
+			throw new UsuarioNoExisteException("No existe ningun usuario con el DNI indicado");	
 		}
 	}
 
@@ -191,7 +189,7 @@ public class UsuarioDAO {
 		return true;
 	}
 
-	public boolean añadirPosicion(PosicionDAO p) throws SQLException {
+	public boolean añadirPosicion(PosicionDAO p) {
 		if (this.posicionesBusqueda.contains(p)) {
 			return false;
 		}
