@@ -40,7 +40,7 @@ public class PantallaRegistro extends JPanel {
 		add(labelRegistro);
 
 		JLabel labelDni = new JLabel("DNI");
-		labelDni.setBounds(90, 105, 56, 14);
+		labelDni.setBounds(80, 105, 56, 14);
 		labelDni.setHorizontalAlignment(SwingConstants.LEFT);
 		add(labelDni);
 
@@ -51,12 +51,12 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoDni.setBounds(170, 102, 159, 20);
+		campoDni.setBounds(190, 102, 159, 20);
 		add(campoDni);
 		campoDni.setColumns(10);
 
 		JLabel labelNombre = new JLabel("Nombre");
-		labelNombre.setBounds(90, 136, 60, 14);
+		labelNombre.setBounds(80, 136, 60, 14);
 		labelNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		add(labelNombre);
 
@@ -67,12 +67,12 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoNombre.setBounds(170, 133, 159, 20);
+		campoNombre.setBounds(190, 133, 159, 20);
 		add(campoNombre);
 		campoNombre.setColumns(10);
 
 		JLabel labelEmail = new JLabel("Email");
-		labelEmail.setBounds(90, 167, 60, 14);
+		labelEmail.setBounds(80, 167, 60, 14);
 		add(labelEmail);
 
 		campoEmail = new JTextField();
@@ -82,12 +82,12 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoEmail.setBounds(170, 164, 159, 20);
+		campoEmail.setBounds(190, 164, 159, 20);
 		add(campoEmail);
 		campoEmail.setColumns(10);
 
 		JLabel labelPassword = new JLabel("Contraseña");
-		labelPassword.setBounds(90, 198, 77, 14);
+		labelPassword.setBounds(80, 198, 77, 14);
 		add(labelPassword);
 
 		campoPassword = new JPasswordField();
@@ -97,11 +97,11 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoPassword.setBounds(170, 195, 159, 20);
+		campoPassword.setBounds(190, 195, 159, 20);
 		add(campoPassword);
 
 		JLabel labelPassword2 = new JLabel("Repita Contraseña");
-		labelPassword2.setBounds(90, 229, 83, 14);
+		labelPassword2.setBounds(80, 229, 110, 14);
 		add(labelPassword2);
 
 		campoPassword2 = new JPasswordField();
@@ -111,7 +111,7 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoPassword2.setBounds(170, 226, 159, 20);
+		campoPassword2.setBounds(190, 226, 159, 20);
 		add(campoPassword2);
 
 		botonRegistrar = new JButton("Registrar");
@@ -131,7 +131,7 @@ public class PantallaRegistro extends JPanel {
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						new UsuarioDAO(dni, nombreUsuario, email, password);
+						ventana.usuarioLogado = new UsuarioDAO(dni, nombreUsuario, email, password);
 						JOptionPane.showMessageDialog(ventana, "Usuari@ registrad@ con éxito", "Registro completado",
 								JOptionPane.PLAIN_MESSAGE);
 						ventana.irAPantalla(NombrePantalla.LOGIN, dni);
