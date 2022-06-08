@@ -64,7 +64,7 @@ public class PantallaLogin extends JPanel {
 							"Se ha iniciado la sesión con éxito", JOptionPane.INFORMATION_MESSAGE);
 
 					PantallaPrincipal principal = new PantallaPrincipal(ventana);
-					ventana.irAPantalla(NombrePantalla.BIENVENIDA,"HOLA "+ventana.usuarioLogado.getNombre());
+					ventana.irAPantalla(NombrePantalla.BIENVENIDA,"HOLA "+ventana.usuarioLogado.getNombre().toUpperCase());
 
 				} catch (SQLException | PassIncorrectoException | UsuarioNoExisteException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
