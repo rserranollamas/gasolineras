@@ -5,13 +5,16 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import clases.PosicionDAO;
 import clases.UsuarioDAO;
 import enums.NombrePantalla;
 
 public class Ventana extends JFrame {
 	/** Representa la pantalla actual por la que estoy navegando **/
 	protected PantallaPrincipal pantallaPrincipal;
+	protected PantallaUbicacion pantallaUbicacion;
 	protected UsuarioDAO usuarioLogado;
+	protected PosicionDAO posicionUsuario;
 
 	public Ventana() {
 		this.setSize(700, 400);
@@ -48,6 +51,16 @@ public class Ventana extends JFrame {
 			break;
 		case MIPERFIL:
 			this.pantallaPrincipal.contenedor.add(new PantallaMiPerfil(this, mensaje), BorderLayout.CENTER);
+			break;
+		case UBICACION:
+			this.pantallaUbicacion = new PantallaUbicacion(this, mensaje);
+			this.pantallaPrincipal.contenedor.add(this.pantallaUbicacion, BorderLayout.CENTER);
+			break;
+		case LOCALIDADES:
+			this.pantallaPrincipal.contenedor.add(new PantallaLocalidades(this, mensaje), BorderLayout.CENTER);
+			break;
+		case GASOLINERAS:
+			this.pantallaPrincipal.contenedor.add(new PantallaGasolineras(this,mensaje),BorderLayout.CENTER);
 			break;
 		}
 		this.pantallaPrincipal.contenedor.repaint();

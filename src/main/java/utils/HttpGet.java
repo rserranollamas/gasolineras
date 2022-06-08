@@ -19,6 +19,7 @@ import javax.net.ssl.X509TrustManager;
 public class HttpGet {
 	public static String httpGet(String urlStr) throws IOException, KeyManagementException, NoSuchAlgorithmException {
 		/* Start of the fix */
+	/*
 		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
             public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; }
             public void checkClientTrusted(X509Certificate[] certs, String authType) { }
@@ -37,8 +38,7 @@ public class HttpGet {
         // Install the all-trusting host verifier
         HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
         /* End of the fix */
-		
-		
+	 
 		// Creamos un objeto de tipo URL
 		URL url = new URL(urlStr);
 		// Abrimos la conexión e indicamos que será de tipo GET HttpURLConnection

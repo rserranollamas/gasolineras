@@ -47,6 +47,21 @@ public class PosicionDAO {
 		ConexionBD.desconectar();
 	}
 
+	public PosicionDAO(UsuarioDAO usuario) throws SQLException, PosicionNoExisteException {
+		Statement smt = ConexionBD.conectar();
+		ResultSet cursor = smt.executeQuery("SELECT * FROM posicion WHERE usuario='" + usuario.getDni() + "'");
+		if (cursor.next()) {
+			this.latitud = cursor.getFloat("latitud");
+			this.longitud = cursor.getFloat("longitud");
+			this.radioKm = cursor.getShort("radioKm");
+			this.usuario = usuario;
+		} else {
+			ConexionBD.desconectar();
+			throw new PosicionNoExisteException(usuario.getNombre() + " no tienes almacenada ninguna ubicación");
+		}
+		ConexionBD.desconectar();
+	}
+
 	public float getLatitud() {
 		return latitud;
 	}
@@ -55,7 +70,7 @@ public class PosicionDAO {
 		Statement smt = ConexionBD.conectar();
 
 		if (smt.executeUpdate(
-				"UPDATE posicion SET latitud=" + latitud + " WHERE dni='" + this.usuario.getDni() + "'") > 0) {
+				"UPDATE posicion SET latitud=" + latitud + " WHERE usuario='" + this.usuario.getDni() + "'") > 0) {
 			this.latitud = latitud;
 		} else {
 			ConexionBD.desconectar();
@@ -72,7 +87,7 @@ public class PosicionDAO {
 		Statement smt = ConexionBD.conectar();
 
 		if (smt.executeUpdate(
-				"UPDATE posicion SET longitud=" + longitud + " WHERE dni='" + this.usuario.getDni() + "'") > 0) {
+				"UPDATE posicion SET longitud=" + longitud + " WHERE usuario='" + this.usuario.getDni() + "'") > 0) {
 			this.longitud = longitud;
 		} else {
 			ConexionBD.desconectar();
@@ -89,7 +104,7 @@ public class PosicionDAO {
 		Statement smt = ConexionBD.conectar();
 
 		if (smt.executeUpdate(
-				"UPDATE posicion SET radioKm=" + radioKm + " WHERE dni='" + this.usuario.getDni() + "'") > 0) {
+				"UPDATE posicion SET radioKm=" + radioKm + " WHERE usuario='" + this.usuario.getDni() + "'") > 0) {
 			this.radioKm = radioKm;
 		} else {
 			ConexionBD.desconectar();
@@ -102,16 +117,17 @@ public class PosicionDAO {
 	public UsuarioDAO getUsuario() {
 		return usuario;
 	}
-	
+
 	public void eliminar() {
-		Statement smt=ConexionBD.conectar();
+		Statement smt = ConexionBD.conectar();
 		try {
-			smt.executeUpdate("DELETE FROM posicion WHERE latitud="+this.latitud+" AND longitud="+this.longitud+" AND usuario='"+usuario.getDni()+"'");
-			this.latitud=0;
-			this.longitud=0;
-			this.radioKm=0;
-			this.usuario=null;
-			
+			smt.executeUpdate("DELETE FROM posicion WHERE latitud=" + this.latitud + " AND longitud=" + this.longitud
+					+ " AND usuario='" + usuario.getDni() + "'");
+			this.latitud = 0;
+			this.longitud = 0;
+			this.radioKm = 0;
+			this.usuario = null;
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
