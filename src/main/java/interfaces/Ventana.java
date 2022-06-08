@@ -10,7 +10,7 @@ import enums.NombrePantalla;
 
 public class Ventana extends JFrame {
 	/** Representa la pantalla actual por la que estoy navegando **/
-	private PantallaPrincipal pantallaPrincipal;
+	protected PantallaPrincipal pantallaPrincipal;
 	protected UsuarioDAO usuarioLogado;
 
 	public Ventana() {
@@ -42,6 +42,12 @@ public class Ventana extends JFrame {
 			break;
 		case BIENVENIDA:
 			this.pantallaPrincipal.contenedor.add(new PantallaBienvenida(this, mensaje), BorderLayout.CENTER);
+			break;
+		case COMBUSTIBLE:
+			this.pantallaPrincipal.contenedor.add(new PantallaCombustible(this, mensaje), BorderLayout.CENTER);
+			break;
+		case MIPERFIL:
+			this.pantallaPrincipal.contenedor.add(new PantallaMiPerfil(this, mensaje), BorderLayout.CENTER);
 			break;
 		}
 		this.pantallaPrincipal.contenedor.repaint();
