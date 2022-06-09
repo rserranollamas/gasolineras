@@ -57,7 +57,7 @@ public class PosicionDAO {
 			this.usuario = usuario;
 		} else {
 			ConexionBD.desconectar();
-			throw new PosicionNoExisteException(usuario.getNombre() + " no tienes almacenada ninguna ubicación");
+			throw new PosicionNoExisteException(usuario.getNombre() + " no tienes almacenada ninguna ubicaciÃ³n");
 		}
 		ConexionBD.desconectar();
 	}
