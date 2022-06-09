@@ -52,7 +52,7 @@ public class PantallaUbicacion extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					ventana.posicionUsuario.setLatitud(Float.parseFloat(campoLatitud.getText()));
-					JOptionPane.showMessageDialog(ventana, "Latitud modificada con 閤ito", "Informaci髇",
+					JOptionPane.showMessageDialog(ventana, "Latitud modificada con 茅xito", "Informaci贸n",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (NumberFormatException | SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -97,7 +97,7 @@ public class PantallaUbicacion extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					ventana.posicionUsuario.setLongitud(Float.parseFloat(campoLongitud.getText()));
-					JOptionPane.showMessageDialog(ventana, "Longitud modificada con 閤ito", "Informaci髇",
+					JOptionPane.showMessageDialog(ventana, "Longitud modificada con 茅xito", "Informaci贸n",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (NumberFormatException | SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -130,7 +130,7 @@ public class PantallaUbicacion extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					ventana.posicionUsuario.setRadioKm(Short.parseShort(campoRadioKm.getText()));
-					JOptionPane.showMessageDialog(ventana, "Radio modificado con 閤ito", "Informaci髇",
+					JOptionPane.showMessageDialog(ventana, "Radio modificado con 茅xito", "Informaci贸n",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (NumberFormatException | SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -147,10 +147,10 @@ public class PantallaUbicacion extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if (ventana.usuarioLogado.a馻dirPosicion(ventana.posicionUsuario)) {
-					System.out.println("Posici髇 a馻dida correctamente");
+				if (ventana.usuarioLogado.a帽adirPosicion(ventana.posicionUsuario)) {
+					System.out.println("Posici贸n a帽adida correctamente");
 				} else {
-					System.out.println("La posici髇 ya estaba almacenada");
+					System.out.println("La posici贸n ya estaba almacenada");
 				}
 
 			}
