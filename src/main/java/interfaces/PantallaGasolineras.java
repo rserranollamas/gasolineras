@@ -3,7 +3,12 @@ package interfaces;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -34,13 +39,17 @@ public class PantallaGasolineras extends JPanel {
 		scrollPane.setViewportView(listadoGasolineras);
 		listadoGasolineras.setLayout(new BoxLayout(listadoGasolineras, BoxLayout.Y_AXIS));
 
-		TreeSet<Gasolinera> gasolineras = ventana.usuarioLogado.listarMisGasolineras();
-
-		Iterator it = gasolineras.iterator();
-		while (it.hasNext()) {
-			Gasolinera gasolinera = (Gasolinera) it.next();
-			System.out.println(gasolinera);
-			listadoGasolineras.add(new ElementoListaGasolineras(ventana, gasolinera));
+		try {
+			TreeSet<Gasolinera>  gasolineras = ventana.usuarioLogado.listarMisGasolineras();
+			Iterator it = gasolineras.iterator();
+			while (it.hasNext()) {
+				Gasolinera gasolinera = (Gasolinera) it.next();
+				System.out.println(gasolinera);
+				listadoGasolineras.add(new ElementoListaGasolineras(ventana, gasolinera));
+			}
+		} catch (KeyManagementException | NoSuchAlgorithmException | IOException e) {
+			JOptionPane.showMessageDialog(ventana, "Error al conectar:\n" +e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
 		}
 
 	}
