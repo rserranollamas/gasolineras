@@ -34,26 +34,32 @@ public class PantallaLogin extends JPanel {
 		this.dni = mensaje;
 		setLayout(null);
 
-		JLabel labelCabecera = new JLabel("INICIAR SESION");
-		labelCabecera.setBounds(111, 21, 216, 44);
+		JLabel labelCabecera = new JLabel("INICIAR SESI\u00D3N");
+		labelCabecera.setBounds(167, 11, 216, 44);
 		labelCabecera.setFont(new Font("Bauhaus 93", Font.BOLD, 30));
 		add(labelCabecera);
 
-		JLabel labelInfo = new JLabel("Por favor, introduce una contraseña para iniciar sesión.");
-		labelInfo.setBounds(44, 76, 453, 14);
+		JLabel labelUsuario = new JLabel("HOLA " + ventana.usuarioLogado.getNombre());
+		labelUsuario.setFont(new Font("Bauhaus 93", Font.BOLD, 20));
+		labelUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		labelUsuario.setBounds(37, 66, 453, 28);
+		add(labelUsuario);
+
+		JLabel labelInfo = new JLabel("Por favor, introduce una contraseï¿½a para iniciar sesiï¿½n.");
+		labelInfo.setBounds(48, 97, 453, 14);
 		labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		add(labelInfo);
 
-		JLabel labelPassword = new JLabel("Contraseña");
-		labelPassword.setBounds(70, 114, 56, 14);
+		JLabel labelPassword = new JLabel("Contraseï¿½a");
+		labelPassword.setBounds(76, 122, 93, 14);
 		add(labelPassword);
 
 		campoPassword = new JPasswordField();
-		campoPassword.setBounds(136, 111, 235, 20);
+		campoPassword.setBounds(167, 119, 235, 20);
 		add(campoPassword);
 
 		JButton botonLogin = new JButton("Login");
-		botonLogin.setBounds(94, 156, 270, 23);
+		botonLogin.setBounds(167, 176, 223, 23);
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -61,10 +67,14 @@ public class PantallaLogin extends JPanel {
 				try {
 					ventana.usuarioLogado = new UsuarioDAO(dni, password);
 					JOptionPane.showMessageDialog(ventana, "Bienvenid@ " + ventana.usuarioLogado.getNombre(),
-							"Se ha iniciado la sesión con éxito", JOptionPane.INFORMATION_MESSAGE);
+							"Se ha iniciado la sesiï¿½n con ï¿½xito", JOptionPane.INFORMATION_MESSAGE);
 
-					PantallaPrincipal principal = new PantallaPrincipal(ventana);
-					ventana.irAPantalla(NombrePantalla.BIENVENIDA,"HOLA "+ventana.usuarioLogado.getNombre().toUpperCase());
+					ventana.irAPantalla(NombrePantalla.BIENVENIDA,
+							"HOLA " + ventana.usuarioLogado.getNombre().toUpperCase());
+					ventana.pantallaPrincipal.botonLogin.setText("CERRAR SESIÃ“N");
+					ventana.pantallaPrincipal.botonMiPerfil.setEnabled(true);
+					ventana.pantallaPrincipal.botonUbicacion.setEnabled(true);
+					ventana.pantallaPrincipal.botonLocalidades.setEnabled(true);
 
 				} catch (SQLException | PassIncorrectoException | UsuarioNoExisteException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -75,6 +85,7 @@ public class PantallaLogin extends JPanel {
 
 		});
 		add(botonLogin);
+
 	}
 
 }
