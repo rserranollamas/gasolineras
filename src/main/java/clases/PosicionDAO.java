@@ -8,10 +8,14 @@ import excepciones.PosicionNoExisteException;
 import utils.ConexionBD;
 
 public class PosicionDAO {
-	private float latitud;
-	private float longitud;
-	private short radioKm;
-	private UsuarioDAO usuario;
+	protected float latitud;
+	protected float longitud;
+	protected short radioKm;
+	protected UsuarioDAO usuario;
+
+	protected PosicionDAO() {
+
+	}
 
 	public PosicionDAO(float latitud, float longitud, short radioKm, UsuarioDAO usuario) throws SQLException {
 		Statement smt = ConexionBD.conectar();
@@ -43,21 +47,6 @@ public class PosicionDAO {
 		} else {
 			ConexionBD.desconectar();
 			throw new PosicionNoExisteException("No existe la posición indicada");
-		}
-		ConexionBD.desconectar();
-	}
-
-	public PosicionDAO(UsuarioDAO usuario) throws SQLException, PosicionNoExisteException {
-		Statement smt = ConexionBD.conectar();
-		ResultSet cursor = smt.executeQuery("SELECT * FROM posicion WHERE usuario='" + usuario.getDni() + "'");
-		if (cursor.next()) {
-			this.latitud = cursor.getFloat("latitud");
-			this.longitud = cursor.getFloat("longitud");
-			this.radioKm = cursor.getShort("radioKm");
-			this.usuario = usuario;
-		} else {
-			ConexionBD.desconectar();
-			throw new PosicionNoExisteException(usuario.getNombre() + " no tienes almacenada ninguna ubicación");
 		}
 		ConexionBD.desconectar();
 	}
