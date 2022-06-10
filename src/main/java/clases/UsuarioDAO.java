@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -26,6 +27,7 @@ public class UsuarioDAO {
 	private HashSet<PosicionDAO> posicionesBusqueda;
 
 	public UsuarioDAO() {
+		
 	}
 
 	/**
@@ -196,7 +198,7 @@ public class UsuarioDAO {
 		}
 
 		Statement smt = ConexionBD.conectar();
-		if (smt.executeUpdate("INSERT INTO localidad VALUES('" + s + "','" + this.getDni() + "')") > 0) {
+		if (smt.executeUpdate("INSERT INTO localidad VALUES('" + s + "','" + this.dni + "')") > 0) {
 			// Solo si todo ha ido bien insertando, añado la localidad al HashSet
 			// localidadesBusqueda
 			this.localidadesBusqueda.add(s);
@@ -308,6 +310,38 @@ public class UsuarioDAO {
 		}
 
 		return gasolineras;
+	}
+	
+	/**
+	 * Función que devuelve en un ArrayList todas las posiciones
+	 * de un usuario almacenadas en la base de datos
+	 * 
+	 * @return ArrayList con todas las posiciones del usuario obtenidas de la BD
+	 */
+	
+	public ArrayList<PosicionDAO> getTodas(){
+		ArrayList<PosicionDAO> ret=new ArrayList<PosicionDAO>();
+		
+		Statement smt=ConexionBD.conectar();
+
+		try {
+			ResultSet cursor = smt.executeQuery("SELECT * FROM posicion WHERE usuario='" + this.dni + "'");
+			while(cursor.next()) {
+				PosicionDAO p=new PosicionDAO();
+				p.latitud=cursor.getFloat("latitud");
+				p.longitud=cursor.getFloat("longitud");
+				p.radioKm=cursor.getShort("radioKm");
+				p.usuario=this;
+				ret.add(p);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ConexionBD.desconectar();
+		
+		return ret;
 	}
 
 	@Override
