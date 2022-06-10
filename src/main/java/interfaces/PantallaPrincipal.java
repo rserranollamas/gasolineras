@@ -80,7 +80,8 @@ public class PantallaPrincipal extends JPanel {
 		botonUbicacion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
+				ventana.irAPantalla(NombrePantalla.UBICACION, "Listado de ubicaciones");
+			/*	try {
 					ventana.posicionUsuario = new PosicionDAO(ventana.usuarioLogado);
 					System.out.println(ventana.usuarioLogado.getDni());
 					ventana.irAPantalla(NombrePantalla.UBICACION, "Puedes modificar la ubicación si lo deseas");
@@ -92,10 +93,11 @@ public class PantallaPrincipal extends JPanel {
 							.setText(Short.toString(ventana.posicionUsuario.getRadioKm()));
 				} catch (SQLException | PosicionNoExisteException e1) {
 					ventana.irAPantalla(NombrePantalla.UBICACION,
-							"Introduce tu ubicaci�n para poder realizar la b�squeda");
+							"Introduce tu ubicación para poder realizar la búsqueda");
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
+			*/
 			}
 		});
 		botonUbicacion.setEnabled(false);
