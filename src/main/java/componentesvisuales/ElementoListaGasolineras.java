@@ -12,7 +12,6 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 
 public class ElementoListaGasolineras extends JPanel {
