@@ -19,12 +19,10 @@ import java.awt.event.ActionEvent;
 
 public class PantallaLogin extends JPanel {
 	private Ventana ventana;
-	private String dni;
 	private JPasswordField campoPassword;
 
-	public PantallaLogin(Ventana v, String mensaje) {
+	public PantallaLogin(Ventana v) {
 		this.ventana = v;
-		this.dni = mensaje;
 		setLayout(null);
 
 		JLabel labelCabecera = new JLabel("INICIAR SESI\u00D3N");
@@ -56,15 +54,15 @@ public class PantallaLogin extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String password = new String(campoPassword.getPassword());
 				try {
-					ventana.usuarioLogado = new UsuarioDAO(dni, password);
+					ventana.usuarioLogado = new UsuarioDAO(ventana.usuarioLogado.getDni(), password);
 					JOptionPane.showMessageDialog(ventana, "Bienvenid@ " + ventana.usuarioLogado.getNombre(),
 							"Se ha iniciado la sesión con éxito", JOptionPane.INFORMATION_MESSAGE);
 
-					ventana.irAPantalla(NombrePantalla.BIENVENIDA,
-							"HOLA " + ventana.usuarioLogado.getNombre().toUpperCase());
+					ventana.irAPantalla(NombrePantalla.BIENVENIDA);
 					ventana.pantallaPrincipal.botonMiPerfil.setEnabled(true);
 					ventana.pantallaPrincipal.botonUbicacion.setEnabled(true);
 					ventana.pantallaPrincipal.botonLocalidades.setEnabled(true);
+					ventana.pantallaPrincipal.botonCombustible.setEnabled(true);
 					ventana.pantallaPrincipal.botonBuscar.setEnabled(true);
 
 				} catch (SQLException | PassIncorrectoException | UsuarioNoExisteException e1) {
