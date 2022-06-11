@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import clases.PosicionDAO;
 import clases.UsuarioDAO;
+import dialogosemergentes.EmergenteEditarPosicion;
 import interfaces.Ventana;
 import java.awt.GridBagLayout;
 import javax.swing.border.LineBorder;
@@ -16,8 +17,8 @@ import java.awt.Insets;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ElementoListaUbicaciones extends JPanel {
 	private Ventana ventana;
@@ -63,17 +64,18 @@ public class ElementoListaUbicaciones extends JPanel {
 		add(labelRadioKm, gbc_labelRadioKm);
 
 		JButton botonBusqueda = new JButton("Añadir a la búsqueda");
-		botonBusqueda.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonBusqueda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if (usuario.añadirPosicion(p)) {
 					JOptionPane.showMessageDialog(ventana, "Se ha añadido la ubicación búsqueda", "Información",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(ventana, "Esta ubicación ya estaba añadida", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(ventana, "Esta ubicación ya estaba añadida", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
+
 		GridBagConstraints gbc_botonBusqueda = new GridBagConstraints();
 		gbc_botonBusqueda.fill = GridBagConstraints.HORIZONTAL;
 		gbc_botonBusqueda.gridwidth = 2;
@@ -83,9 +85,8 @@ public class ElementoListaUbicaciones extends JPanel {
 		add(botonBusqueda, gbc_botonBusqueda);
 
 		JButton botonBorrar = new JButton("Borrar");
-		botonBorrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				usuario.quitarPosicion(p);
 				p.eliminar();
@@ -120,6 +121,12 @@ public class ElementoListaUbicaciones extends JPanel {
 		add(botonBorrar, gbc_botonBorrar);
 
 		JButton botonEditar = new JButton("Editar");
+		botonEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EmergenteEditarPosicion editarPosicion = new EmergenteEditarPosicion(ventana, usuario, posicion);
+				editarPosicion.setVisible(true);
+			}
+		});
 		GridBagConstraints gbc_botonEditar = new GridBagConstraints();
 		gbc_botonEditar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_botonEditar.gridx = 11;
