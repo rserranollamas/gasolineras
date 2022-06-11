@@ -10,6 +10,7 @@ import componentesvisuales.ElementoListaUbicaciones;
 import dialogosemergentes.EmergenteCrearPosicion;
 
 import java.awt.Font;
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
@@ -21,7 +22,7 @@ import java.awt.event.ActionEvent;
 public class PantallaUbicacion extends JPanel {
 	private Ventana ventana;
 
-	public PantallaUbicacion(Ventana v, String mensaje) {
+	public PantallaUbicacion(Ventana v) {
 		this.ventana = v;
 		setLayout(new BorderLayout(0, 0));
 
@@ -46,10 +47,14 @@ public class PantallaUbicacion extends JPanel {
 		scrollPane.setViewportView(listadoUbicaciones);
 		listadoUbicaciones.setLayout(new BoxLayout(listadoUbicaciones, BoxLayout.Y_AXIS));
 
-		ArrayList<PosicionDAO> todasPosiciones = ventana.usuarioLogado.getTodas();
+		ArrayList<PosicionDAO> todasPosiciones = ventana.usuarioLogado.getPosiciones();
 		for (byte i = 0; i < todasPosiciones.size(); i++) {
-			listadoUbicaciones
-					.add(new ElementoListaUbicaciones(ventana, ventana.usuarioLogado, todasPosiciones.get(i)));
+			ElementoListaUbicaciones ubicacion = new ElementoListaUbicaciones(ventana, ventana.usuarioLogado,
+					todasPosiciones.get(i));
+			listadoUbicaciones.add(ubicacion);
+			if (ventana.usuarioLogado.posicionesBusqueda.contains(todasPosiciones.get(i))) {
+				ubicacion.setBackground(Color.GREEN);
+			}
 		}
 
 	}
