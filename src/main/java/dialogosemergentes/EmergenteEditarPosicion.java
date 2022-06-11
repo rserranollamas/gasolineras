@@ -29,7 +29,6 @@ public class EmergenteEditarPosicion extends JDialog {
 	private JButton botonLatitud;
 	private JButton botonLongitud;
 	private JButton botonRadioKm;
-	private JButton botonActualizar;
 
 	public EmergenteEditarPosicion(Ventana v, UsuarioDAO u, PosicionDAO p) {
 		this.ventana = v;
@@ -153,61 +152,29 @@ public class EmergenteEditarPosicion extends JDialog {
 		botonRadioKm.setEnabled(false);
 		botonRadioKm.setBounds(264, 138, 134, 23);
 		getContentPane().add(botonRadioKm);
-		
-		botonActualizar = new JButton("Modificar Ubicación");
-		botonActualizar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				try {
-					posicionAEditar.setLatitud(Float.parseFloat(campoLatitud.getText()));
-					posicionAEditar.setLongitud(Float.parseFloat(campoLongitud.getText()));
-					posicionAEditar.setRadioKm(Short.parseShort(campoRadioKm.getText()));
-					
-					if (usuario.añadirPosicion(posicionAEditar)) {
-						System.out.println("Posición añadida correctamente");
-						JOptionPane.showMessageDialog(ventana, "Ubicación añadida correctamente", "Información",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
-
-				} catch (NumberFormatException | SQLException e1) {
-					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				}
-
-			}
-		});
-		botonActualizar.setBounds(124, 183, 148, 23);
-		getContentPane().add(botonActualizar);
 	}
 
 	public void habilitarLatitud() {
 		if (campoLatitud.getText().isEmpty()) {
 			botonLatitud.setEnabled(false);
-			botonActualizar.setEnabled(false);
 		} else {
 			botonLatitud.setEnabled(true);
-			botonActualizar.setEnabled(true);
 		}
 	}
 
 	public void habilitarLongitud() {
 		if (campoLongitud.getText().isEmpty()) {
 			botonLongitud.setEnabled(false);
-			botonActualizar.setEnabled(false);
 		} else {
 			botonLongitud.setEnabled(true);
-			botonActualizar.setEnabled(true);
 		}
 	}
 
 	public void habilitarRadioKm() {
 		if (campoRadioKm.getText().isEmpty()) {
 			botonRadioKm.setEnabled(false);
-			botonActualizar.setEnabled(false);
 		} else {
 			botonRadioKm.setEnabled(true);
-			botonActualizar.setEnabled(true);
 		}
 	}
 
