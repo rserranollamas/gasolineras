@@ -5,14 +5,15 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PantallaMiPerfil extends JPanel {
 	private Ventana ventana;
@@ -41,12 +42,11 @@ public class PantallaMiPerfil extends JPanel {
 		add(labelDni);
 
 		botonDni = new JButton("Modificar DNI");
-		botonDni.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonDni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					ventana.usuarioLogado.setDni(campoDni.getText());
-					JOptionPane.showMessageDialog(ventana, "DNI modificado con éxito", "Información",
+					JOptionPane.showMessageDialog(ventana, "DNI modificado con Ã©xito", "InformaciÃ³n",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -86,18 +86,16 @@ public class PantallaMiPerfil extends JPanel {
 		add(campoNombre);
 
 		botonNombre = new JButton("Modificar Nombre");
-		botonNombre.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonNombre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					ventana.usuarioLogado.setNombre(campoNombre.getText());
-					JOptionPane.showMessageDialog(ventana, "Nombre modificado con éxito", "Información",
+					JOptionPane.showMessageDialog(ventana, "Nombre modificado con ï¿½xito", "Informaciï¿½n",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
-
 			}
 		});
 		botonNombre.setEnabled(false);
@@ -120,12 +118,11 @@ public class PantallaMiPerfil extends JPanel {
 		add(campoEmail);
 
 		botonEmail = new JButton("Modificar Email");
-		botonEmail.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					ventana.usuarioLogado.setEmail(campoEmail.getText());
-					JOptionPane.showMessageDialog(ventana, "Email modificado con éxito", "Información",
+					JOptionPane.showMessageDialog(ventana, "Email modificado con Ã©xito", "InformaciÃ³n",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -166,9 +163,25 @@ public class PantallaMiPerfil extends JPanel {
 		add(campoPassword2);
 
 		botonPassword = new JButton("Modificar contrase\u00F1a");
-		botonPassword.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String password = new String(campoPassword.getPassword());
+				String password2 = new String(campoPassword2.getPassword());
+
+				if (!password.equals(password2)) {
+					JOptionPane.showMessageDialog(ventana, "Las contraseÃ±as no coinciden", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					try {
+						ventana.usuarioLogado.setPassword(password);
+						JOptionPane.showMessageDialog(ventana, "ContraseÃ±a modificada con Ã©xito", "InformaciÃ³n",
+								JOptionPane.INFORMATION_MESSAGE);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+				}
 			}
 		});
 		botonPassword.setEnabled(false);
