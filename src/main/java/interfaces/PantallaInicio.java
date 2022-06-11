@@ -11,16 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PantallaInicio extends JPanel {
 	private Ventana ventana;
@@ -56,13 +52,8 @@ public class PantallaInicio extends JPanel {
 		campoDni.setColumns(10);
 
 		botonContinuar = new JButton("CONTINUAR");
-		botonContinuar.setBounds(150, 137, 126, 33);
-		botonContinuar.setEnabled(false);
-		add(botonContinuar);
-
-		botonContinuar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonContinuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				String dni = campoDni.getText();
 				if (!dni.isBlank()) {
 					try {
@@ -80,7 +71,10 @@ public class PantallaInicio extends JPanel {
 				}
 			}
 		});
-
+		botonContinuar.setBounds(150, 137, 126, 33);
+		botonContinuar.setEnabled(false);
+		add(botonContinuar);
+		
 	}
 
 	public void habilitarContinuar() {
