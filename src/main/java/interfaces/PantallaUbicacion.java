@@ -8,7 +8,6 @@ import javax.swing.SwingConstants;
 import clases.PosicionDAO;
 import componentesvisuales.ElementoListaUbicaciones;
 import dialogosemergentes.EmergenteCrearPosicion;
-import dialogosemergentes.EmergenteEditarPosicion;
 
 import java.awt.Font;
 import java.util.ArrayList;
@@ -16,8 +15,8 @@ import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PantallaUbicacion extends JPanel {
 	private Ventana ventana;
@@ -31,10 +30,9 @@ public class PantallaUbicacion extends JPanel {
 		labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		add(labelTitulo, BorderLayout.NORTH);
 
-		JButton botonCrearPosicion = new JButton("Nueva Posición");
-		botonCrearPosicion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		JButton botonCrearPosicion = new JButton("NUEVA UBICACIÓN");
+		botonCrearPosicion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				EmergenteCrearPosicion crearPosicion = new EmergenteCrearPosicion(ventana, ventana.usuarioLogado);
 				crearPosicion.setVisible(true);
 			}
@@ -50,7 +48,8 @@ public class PantallaUbicacion extends JPanel {
 
 		ArrayList<PosicionDAO> todasPosiciones = ventana.usuarioLogado.getTodas();
 		for (byte i = 0; i < todasPosiciones.size(); i++) {
-			listadoUbicaciones.add(new ElementoListaUbicaciones(ventana, ventana.usuarioLogado, todasPosiciones.get(i)));
+			listadoUbicaciones
+					.add(new ElementoListaUbicaciones(ventana, ventana.usuarioLogado, todasPosiciones.get(i)));
 		}
 
 	}
