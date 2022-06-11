@@ -27,7 +27,7 @@ public class PantallaMiPerfil extends JPanel {
 	private JButton botonEmail;
 	private JButton botonPassword;
 
-	public PantallaMiPerfil(Ventana v, String mensaje) {
+	public PantallaMiPerfil(Ventana v) {
 		this.ventana = v;
 		setLayout(null);
 		
