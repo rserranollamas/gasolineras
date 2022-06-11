@@ -1,10 +1,7 @@
 package interfaces;
 
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -15,11 +12,11 @@ import enums.NombrePantalla;
 
 import javax.swing.JPasswordField;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PantallaRegistro extends JPanel {
 	private Ventana ventana;
@@ -86,7 +83,7 @@ public class PantallaRegistro extends JPanel {
 		add(campoEmail);
 		campoEmail.setColumns(10);
 
-		JLabel labelPassword = new JLabel("Contraseña");
+		JLabel labelPassword = new JLabel("ContraseÃ±a");
 		labelPassword.setBounds(80, 198, 77, 14);
 		add(labelPassword);
 
@@ -100,7 +97,7 @@ public class PantallaRegistro extends JPanel {
 		campoPassword.setBounds(190, 195, 159, 20);
 		add(campoPassword);
 
-		JLabel labelPassword2 = new JLabel("Repita Contraseña");
+		JLabel labelPassword2 = new JLabel("Repita ContraseÃ±a");
 		labelPassword2.setBounds(80, 229, 110, 14);
 		add(labelPassword2);
 
@@ -115,11 +112,8 @@ public class PantallaRegistro extends JPanel {
 		add(campoPassword2);
 
 		botonRegistrar = new JButton("Registrar");
-		botonRegistrar.setEnabled(false);
-
-		botonRegistrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				String dni = campoDni.getText();
 				String nombreUsuario = campoNombre.getText();
 				String email = campoEmail.getText();
@@ -127,12 +121,12 @@ public class PantallaRegistro extends JPanel {
 				String password2 = new String(campoPassword2.getPassword());
 
 				if (!password.equals(password2)) {
-					JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden", "Error",
+					JOptionPane.showMessageDialog(ventana, "Las contraseÃ±as no coinciden", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
 						ventana.usuarioLogado = new UsuarioDAO(dni, nombreUsuario, email, password);
-						JOptionPane.showMessageDialog(ventana, "Usuari@ registrad@ con éxito", "Registro completado",
+						JOptionPane.showMessageDialog(ventana, "Usuari@ registrad@ con Ã©xito", "Registro completado",
 								JOptionPane.PLAIN_MESSAGE);
 						ventana.irAPantalla(NombrePantalla.LOGIN, dni);
 					} catch (SQLException e1) {
@@ -141,10 +135,9 @@ public class PantallaRegistro extends JPanel {
 					}
 
 				}
-
 			}
 		});
-
+		botonRegistrar.setEnabled(false);
 		botonRegistrar.setBounds(202, 257, 94, 23);
 		add(botonRegistrar);
 	}
