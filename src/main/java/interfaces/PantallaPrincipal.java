@@ -3,20 +3,14 @@ package interfaces;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-
-import clases.PosicionDAO;
 import enums.NombrePantalla;
-import excepciones.PosicionNoExisteException;
-
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.SQLException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PantallaPrincipal extends JPanel {
 	private Ventana ventana;
@@ -25,13 +19,14 @@ public class PantallaPrincipal extends JPanel {
 	protected JButton botonMiPerfil;
 	protected JButton botonUbicacion;
 	protected JButton botonLocalidades;
+	protected JButton botonBuscar;
+	protected JButton botonCombustible;
 
 	public PantallaPrincipal(Ventana v) {
 		this.ventana = v;
 		setLayout(new BorderLayout(0, 0));
 
 		contenedor = new JPanel();
-		contenedor.setSize(700, 700);
 		add(contenedor, BorderLayout.CENTER);
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.X_AXIS));
 
@@ -45,9 +40,8 @@ public class PantallaPrincipal extends JPanel {
 		panelEste.setLayout(gbl_panelEste);
 
 		botonLogin = new JButton("INICIAR SESIÓN");
-		botonLogin.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				ventana.irAPantalla(NombrePantalla.INICIO, "INICIAR SESIÓN O REGISTRARSE");
 				botonLogin.setText("INICIAR SESIÓN");
 			}
@@ -60,14 +54,13 @@ public class PantallaPrincipal extends JPanel {
 		panelEste.add(botonLogin, gbc_botonLogin);
 
 		botonMiPerfil = new JButton("MI PERFIL");
-		botonMiPerfil.setEnabled(false);
-		botonMiPerfil.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonMiPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				ventana.irAPantalla(NombrePantalla.MIPERFIL,
 						"PERFIL DE " + ventana.usuarioLogado.getNombre().toUpperCase());
 			}
 		});
+		botonMiPerfil.setEnabled(false);
 		botonMiPerfil.setVerticalAlignment(SwingConstants.TOP);
 		GridBagConstraints gbc_botonMiPerfil = new GridBagConstraints();
 		gbc_botonMiPerfil.fill = GridBagConstraints.HORIZONTAL;
@@ -77,27 +70,9 @@ public class PantallaPrincipal extends JPanel {
 		panelEste.add(botonMiPerfil, gbc_botonMiPerfil);
 
 		botonUbicacion = new JButton("UBICACIÓN");
-		botonUbicacion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonUbicacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				ventana.irAPantalla(NombrePantalla.UBICACION, "Listado de ubicaciones");
-			/*	try {
-					ventana.posicionUsuario = new PosicionDAO(ventana.usuarioLogado);
-					System.out.println(ventana.usuarioLogado.getDni());
-					ventana.irAPantalla(NombrePantalla.UBICACION, "Puedes modificar la ubicación si lo deseas");
-					ventana.pantallaUbicacion.campoLatitud
-							.setText(Float.toString(ventana.posicionUsuario.getLatitud()));
-					ventana.pantallaUbicacion.campoLongitud
-							.setText(Float.toString(ventana.posicionUsuario.getLongitud()));
-					ventana.pantallaUbicacion.campoRadioKm
-							.setText(Short.toString(ventana.posicionUsuario.getRadioKm()));
-				} catch (SQLException | PosicionNoExisteException e1) {
-					ventana.irAPantalla(NombrePantalla.UBICACION,
-							"Introduce tu ubicación para poder realizar la búsqueda");
-					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				}
-			*/
 			}
 		});
 		botonUbicacion.setEnabled(false);
@@ -108,30 +83,11 @@ public class PantallaPrincipal extends JPanel {
 		gbc_botonUbicacion.gridy = 2;
 		panelEste.add(botonUbicacion, gbc_botonUbicacion);
 
-		JButton botonBuscar = new JButton("BUSCAR");
-		botonBuscar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.irAPantalla(NombrePantalla.GASOLINERAS, "Listado de Gasolineras");
-			}
-		});
-
-		JButton botonCombustible = new JButton("COMBUSTIBLE");
-		botonCombustible.setEnabled(false);
-		botonCombustible.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.irAPantalla(NombrePantalla.COMBUSTIBLE,
-						ventana.usuarioLogado.getNombre().toUpperCase() + ", SELECCIONA EL COMBUSTIBLE ");
-			}
-		});
-
 		botonLocalidades = new JButton("LOCALIDADES");
-		botonLocalidades.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonLocalidades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				ventana.irAPantalla(NombrePantalla.LOCALIDADES,
-						ventana.usuarioLogado.getNombre().toUpperCase() + ", SELECCIONA LOCALIDADES A A�ADIR");
+						ventana.usuarioLogado.getNombre().toUpperCase() + ", SELECCIONA LOCALIDADES A AÑADIR");
 			}
 		});
 		botonLocalidades.setEnabled(false);
@@ -141,12 +97,28 @@ public class PantallaPrincipal extends JPanel {
 		gbc_botonLocalidades.gridx = 0;
 		gbc_botonLocalidades.gridy = 3;
 		panelEste.add(botonLocalidades, gbc_botonLocalidades);
+
+		botonCombustible = new JButton("COMBUSTIBLE");
+		botonCombustible.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.irAPantalla(NombrePantalla.COMBUSTIBLE,
+						ventana.usuarioLogado.getNombre().toUpperCase() + ", SELECCIONA EL COMBUSTIBLE ");
+			}
+		});
+		botonCombustible.setEnabled(false);
 		GridBagConstraints gbc_botonCombustible = new GridBagConstraints();
 		gbc_botonCombustible.insets = new Insets(0, 0, 5, 0);
 		gbc_botonCombustible.fill = GridBagConstraints.HORIZONTAL;
 		gbc_botonCombustible.gridx = 0;
 		gbc_botonCombustible.gridy = 4;
 		panelEste.add(botonCombustible, gbc_botonCombustible);
+
+		botonBuscar = new JButton("BUSCAR");
+		botonBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.irAPantalla(NombrePantalla.GASOLINERAS, "Listado de Gasolineras");
+			}
+		});
 		botonBuscar.setEnabled(false);
 		GridBagConstraints gbc_botonBuscar = new GridBagConstraints();
 		gbc_botonBuscar.insets = new Insets(0, 0, 5, 0);
