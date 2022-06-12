@@ -18,10 +18,11 @@ public class ElementoListaGasolineras extends JPanel {
 	private Ventana ventana;
 	private Gasolinera gasolinera;
 
-	public ElementoListaGasolineras(Ventana v, Gasolinera g) {
+	public ElementoListaGasolineras(Ventana v, Gasolinera g, String precio) {
 		setBorder(new LineBorder(new Color(255, 165, 0)));
 		this.ventana = v;
 		this.gasolinera = g;
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 70, 165, 60, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 20, 15, 15, 15, 10, 0 };
@@ -69,16 +70,16 @@ public class ElementoListaGasolineras extends JPanel {
 		gbc_labelLocalidad.gridy = 3;
 		add(labelLocalidad, gbc_labelLocalidad);
 
-		JLabel labelPrecio95 = new JLabel(gasolinera.getGasolina95E5() + " €");
-		labelPrecio95.setFont(new Font("Tahoma", Font.BOLD, 15));
-		labelPrecio95.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_labelPrecio95 = new GridBagConstraints();
-		gbc_labelPrecio95.insets = new Insets(0, 0, 5, 5);
-		gbc_labelPrecio95.anchor = GridBagConstraints.EAST;
-		gbc_labelPrecio95.gridheight = 2;
-		gbc_labelPrecio95.gridx = 3;
-		gbc_labelPrecio95.gridy = 2;
-		add(labelPrecio95, gbc_labelPrecio95);
+		JLabel labelPrecio = new JLabel(precio + " €");
+		labelPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
+		labelPrecio.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_labelPrecio = new GridBagConstraints();
+		gbc_labelPrecio.insets = new Insets(0, 0, 5, 5);
+		gbc_labelPrecio.anchor = GridBagConstraints.EAST;
+		gbc_labelPrecio.gridheight = 2;
+		gbc_labelPrecio.gridx = 3;
+		gbc_labelPrecio.gridy = 2;
+		add(labelPrecio, gbc_labelPrecio);
 
 		JLabel labelProvincia = new JLabel(gasolinera.getProvincia());
 		labelProvincia.setHorizontalAlignment(SwingConstants.CENTER);
