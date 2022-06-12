@@ -15,11 +15,10 @@ public class Ventana extends JFrame {
 	protected PosicionDAO posicionUsuario;
 
 	public Ventana() {
-		this.setSize(800, 400);
+		this.setSize(700, 400);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Gasolineras");
 		this.pantallaPrincipal = new PantallaPrincipal(this);
-
 		this.setContentPane(this.pantallaPrincipal);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -56,6 +55,7 @@ public class Ventana extends JFrame {
 			this.pantallaPrincipal.contenedor.add(new PantallaLocalidades(this), BorderLayout.CENTER);
 			break;
 		}
+		this.pantallaPrincipal.contenedor.setOpaque(false);
 		this.pantallaPrincipal.contenedor.repaint();
 		this.pantallaPrincipal.contenedor.revalidate();
 	}
