@@ -17,6 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class PantallaRegistro extends JPanel {
 	private Ventana ventana;
@@ -33,12 +34,15 @@ public class PantallaRegistro extends JPanel {
 		setOpaque(false);
 
 		JLabel labelRegistro = new JLabel("REGISTRO");
-		labelRegistro.setBounds(193, 47, 136, 44);
+		labelRegistro.setForeground(Color.WHITE);
+		labelRegistro.setBounds(80, 82, 136, 35);
 		labelRegistro.setFont(new Font("Bauhaus 93", Font.BOLD, 30));
 		add(labelRegistro);
 
 		JLabel labelDni = new JLabel("DNI");
-		labelDni.setBounds(80, 105, 56, 14);
+		labelDni.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelDni.setForeground(Color.WHITE);
+		labelDni.setBounds(80, 129, 56, 14);
 		labelDni.setHorizontalAlignment(SwingConstants.LEFT);
 		add(labelDni);
 
@@ -49,12 +53,14 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoDni.setBounds(190, 102, 159, 20);
+		campoDni.setBounds(226, 128, 159, 20);
 		add(campoDni);
 		campoDni.setColumns(10);
 
 		JLabel labelNombre = new JLabel("Nombre");
-		labelNombre.setBounds(80, 136, 60, 14);
+		labelNombre.setForeground(Color.WHITE);
+		labelNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelNombre.setBounds(80, 160, 60, 14);
 		labelNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		add(labelNombre);
 
@@ -65,12 +71,14 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoNombre.setBounds(190, 133, 159, 20);
+		campoNombre.setBounds(226, 159, 159, 20);
 		add(campoNombre);
 		campoNombre.setColumns(10);
 
 		JLabel labelEmail = new JLabel("Email");
-		labelEmail.setBounds(80, 167, 60, 14);
+		labelEmail.setForeground(Color.WHITE);
+		labelEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelEmail.setBounds(80, 191, 60, 14);
 		add(labelEmail);
 
 		campoEmail = new JTextField();
@@ -80,12 +88,14 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoEmail.setBounds(190, 164, 159, 20);
+		campoEmail.setBounds(226, 190, 159, 20);
 		add(campoEmail);
 		campoEmail.setColumns(10);
 
 		JLabel labelPassword = new JLabel("Contraseña");
-		labelPassword.setBounds(80, 198, 77, 14);
+		labelPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelPassword.setForeground(Color.WHITE);
+		labelPassword.setBounds(80, 222, 110, 14);
 		add(labelPassword);
 
 		campoPassword = new JPasswordField();
@@ -95,11 +105,13 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoPassword.setBounds(190, 195, 159, 20);
+		campoPassword.setBounds(226, 221, 159, 20);
 		add(campoPassword);
 
 		JLabel labelPassword2 = new JLabel("Repita Contraseña");
-		labelPassword2.setBounds(80, 229, 110, 14);
+		labelPassword2.setForeground(Color.WHITE);
+		labelPassword2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelPassword2.setBounds(80, 253, 136, 14);
 		add(labelPassword2);
 
 		campoPassword2 = new JPasswordField();
@@ -109,7 +121,7 @@ public class PantallaRegistro extends JPanel {
 				habilitarRegistro();
 			}
 		});
-		campoPassword2.setBounds(190, 226, 159, 20);
+		campoPassword2.setBounds(226, 252, 159, 20);
 		add(campoPassword2);
 
 		botonRegistrar = new JButton("Registrar");
@@ -139,7 +151,7 @@ public class PantallaRegistro extends JPanel {
 			}
 		});
 		botonRegistrar.setEnabled(false);
-		botonRegistrar.setBounds(202, 257, 94, 23);
+		botonRegistrar.setBounds(226, 283, 159, 23);
 		add(botonRegistrar);
 	}
 
