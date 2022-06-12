@@ -32,16 +32,16 @@ public class PantallaInicio extends JPanel {
 
 		JLabel labelInfo = new JLabel("Vamos a comprobar si formas parte de Gasolineras APP");
 		labelInfo.setForeground(Color.WHITE);
-		labelInfo.setBounds(39, 14, 341, 14);
+		labelInfo.setBounds(55, 13, 341, 14);
 		add(labelInfo);
 
 		JLabel labelDni = new JLabel("DNI");
 		labelDni.setForeground(Color.WHITE);
-		labelDni.setBounds(39, 39, 31, 14);
+		labelDni.setBounds(55, 38, 31, 14);
 		add(labelDni);
 
 		campoDni = new JTextField();
-		campoDni.setBounds(80, 36, 159, 20);
+		campoDni.setBounds(96, 35, 159, 20);
 		campoDni.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -52,7 +52,7 @@ public class PantallaInicio extends JPanel {
 		campoDni.setColumns(10);
 
 		botonContinuar = new JButton("CONTINUAR");
-		botonContinuar.setForeground(Color.WHITE);
+		botonContinuar.setForeground(Color.BLACK);
 		botonContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String dni = campoDni.getText();
@@ -72,7 +72,7 @@ public class PantallaInicio extends JPanel {
 				}
 			}
 		});
-		botonContinuar.setBounds(260, 36, 107, 20);
+		botonContinuar.setBounds(276, 35, 107, 20);
 		botonContinuar.setEnabled(false);
 		add(botonContinuar);
 		
