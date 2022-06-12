@@ -37,13 +37,14 @@ public class PantallaMiPerfil extends JPanel {
 		JLabel labelCabecera = new JLabel("MI PERFIL");
 		labelCabecera.setForeground(Color.WHITE);
 		labelCabecera.setFont(new Font("Bauhaus 93", Font.PLAIN, 36));
-		labelCabecera.setBounds(180, 11, 160, 54);
+		labelCabecera.setBounds(70, 80, 160, 36);
 		add(labelCabecera);
 		
 		JLabel labelDni = new JLabel("DNI");
+		labelDni.setFont(new Font("Tahoma", Font.BOLD, 14));
 		labelDni.setForeground(Color.WHITE);
 		labelDni.setHorizontalAlignment(SwingConstants.LEFT);
-		labelDni.setBounds(60, 80, 56, 14);
+		labelDni.setBounds(69, 122, 56, 14);
 		add(labelDni);
 
 		botonDni = new JButton("Modificar DNI");
@@ -60,7 +61,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonDni.setEnabled(false);
-		botonDni.setBounds(366, 76, 160, 23);
+		botonDni.setBounds(401, 118, 160, 23);
 		add(botonDni);
 
 		campoDni = new JTextField(ventana.usuarioLogado.getDni());
@@ -71,13 +72,14 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		campoDni.setColumns(10);
-		campoDni.setBounds(170, 77, 191, 20);
+		campoDni.setBounds(205, 119, 191, 20);
 		add(campoDni);
 
 		JLabel labelNombre = new JLabel("Nombre");
+		labelNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
 		labelNombre.setForeground(Color.WHITE);
 		labelNombre.setHorizontalAlignment(SwingConstants.LEFT);
-		labelNombre.setBounds(60, 111, 60, 14);
+		labelNombre.setBounds(69, 153, 60, 14);
 		add(labelNombre);
 
 		campoNombre = new JTextField(ventana.usuarioLogado.getNombre());
@@ -88,7 +90,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		campoNombre.setColumns(10);
-		campoNombre.setBounds(170, 108, 191, 20);
+		campoNombre.setBounds(205, 150, 191, 20);
 		add(campoNombre);
 
 		botonNombre = new JButton("Modificar Nombre");
@@ -105,12 +107,13 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonNombre.setEnabled(false);
-		botonNombre.setBounds(366, 107, 160, 23);
+		botonNombre.setBounds(401, 149, 160, 23);
 		add(botonNombre);
 
 		JLabel labelEmail = new JLabel("Email");
+		labelEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
 		labelEmail.setForeground(Color.WHITE);
-		labelEmail.setBounds(60, 142, 60, 14);
+		labelEmail.setBounds(69, 184, 60, 14);
 		add(labelEmail);
 
 		campoEmail = new JTextField(ventana.usuarioLogado.getEmail());
@@ -121,7 +124,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		campoEmail.setColumns(10);
-		campoEmail.setBounds(170, 139, 191, 20);
+		campoEmail.setBounds(205, 181, 191, 20);
 		add(campoEmail);
 
 		botonEmail = new JButton("Modificar Email");
@@ -138,12 +141,13 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonEmail.setEnabled(false);
-		botonEmail.setBounds(366, 138, 160, 23);
+		botonEmail.setBounds(401, 180, 160, 23);
 		add(botonEmail);
 
 		JLabel labelPassword = new JLabel("Contrase\u00F1a");
+		labelPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
 		labelPassword.setForeground(Color.WHITE);
-		labelPassword.setBounds(60, 173, 77, 14);
+		labelPassword.setBounds(69, 215, 116, 14);
 		add(labelPassword);
 
 		campoPassword = new JPasswordField();
@@ -153,12 +157,13 @@ public class PantallaMiPerfil extends JPanel {
 				habilitarPassword();
 			}
 		});
-		campoPassword.setBounds(170, 170, 191, 20);
+		campoPassword.setBounds(205, 212, 191, 20);
 		add(campoPassword);
 
 		JLabel labelPassword2 = new JLabel("Repita Contrase\u00F1a");
+		labelPassword2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		labelPassword2.setForeground(Color.WHITE);
-		labelPassword2.setBounds(60, 204, 110, 14);
+		labelPassword2.setBounds(69, 246, 139, 14);
 		add(labelPassword2);
 
 		campoPassword2 = new JPasswordField();
@@ -168,7 +173,7 @@ public class PantallaMiPerfil extends JPanel {
 				habilitarPassword();
 			}
 		});
-		campoPassword2.setBounds(170, 201, 191, 20);
+		campoPassword2.setBounds(205, 243, 191, 20);
 		add(campoPassword2);
 
 		botonPassword = new JButton("Modificar contrase\u00F1a");
@@ -194,7 +199,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonPassword.setEnabled(false);
-		botonPassword.setBounds(366, 184, 160, 23);
+		botonPassword.setBounds(401, 226, 160, 23);
 		add(botonPassword);
 		
 	}
