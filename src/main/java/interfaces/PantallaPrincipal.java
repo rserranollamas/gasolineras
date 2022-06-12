@@ -1,16 +1,23 @@
 package interfaces;
 
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import clases.UsuarioDAO;
 import enums.NombrePantalla;
-import javax.swing.BoxLayout;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 
 public class PantallaPrincipal extends JPanel {
 	private Ventana ventana;
@@ -19,45 +26,65 @@ public class PantallaPrincipal extends JPanel {
 	protected JButton botonMiPerfil;
 	protected JButton botonUbicacion;
 	protected JButton botonLocalidades;
-	protected JButton botonBuscar;
+	protected JButton botonLogout;
 	protected JButton botonCombustible;
+	private JButton botonSalir;
 
 	public PantallaPrincipal(Ventana v) {
+		setBackground(Color.RED);
 		this.ventana = v;
 		setLayout(new BorderLayout(0, 0));
+		
+		PanelFondoImagen imagenFondo = new PanelFondoImagen("./imagenes/EstacionServicio2.jpg");
+		add(imagenFondo);
+		imagenFondo.setOpaque(false);
+		imagenFondo.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panelNorte = new JPanel();
+		imagenFondo.add(panelNorte, BorderLayout.NORTH);
+		panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelNorte.setOpaque(false);
 
 		contenedor = new JPanel();
-		add(contenedor, BorderLayout.CENTER);
+		imagenFondo.add(contenedor, BorderLayout.CENTER);
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.X_AXIS));
+		contenedor.setOpaque(false);
 
-		JPanel panelEste = new JPanel();
-		add(panelEste, BorderLayout.WEST);
-		GridBagLayout gbl_panelEste = new GridBagLayout();
-		gbl_panelEste.columnWidths = new int[] { 113, 0 };
-		gbl_panelEste.rowHeights = new int[] { 23, 23, 0, 0, 23, 0, 0, 0 };
-		gbl_panelEste.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
-		gbl_panelEste.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		panelEste.setLayout(gbl_panelEste);
 
 		botonLogin = new JButton("INICIAR SESIÓN");
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.irAPantalla(NombrePantalla.INICIO, "INICIAR SESIÓN O REGISTRARSE");
-				botonLogin.setText("INICIAR SESIÓN");
+				ventana.irAPantalla(NombrePantalla.INICIO);
 			}
 		});
 		GridBagConstraints gbc_botonLogin = new GridBagConstraints();
-		gbc_botonLogin.fill = GridBagConstraints.HORIZONTAL;
-		gbc_botonLogin.insets = new Insets(0, 0, 5, 0);
-		gbc_botonLogin.gridx = 0;
-		gbc_botonLogin.gridy = 0;
-		panelEste.add(botonLogin, gbc_botonLogin);
+		panelNorte.add(botonLogin, gbc_botonLogin);
+
+		botonLogout = new JButton("CERRAR SESIÓN");
+		botonLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana.usuarioLogado = new UsuarioDAO();
+				botonLogout.setVisible(false);
+				botonLogin.setVisible(true);
+				botonMiPerfil.setEnabled(false);
+				botonUbicacion.setEnabled(false);
+				botonLocalidades.setEnabled(false);
+				botonCombustible.setEnabled(false);
+				ventana.irAPantalla(NombrePantalla.INICIO);
+			}
+		});
+		botonLogout.setVisible(false);
+		GridBagConstraints gbc_botonCerrarSesion = new GridBagConstraints();
+		gbc_botonCerrarSesion.insets = new Insets(0, 0, 5, 0);
+		gbc_botonCerrarSesion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_botonCerrarSesion.gridx = 0;
+		gbc_botonCerrarSesion.gridy = 0;
+		panelNorte.add(botonLogout, gbc_botonCerrarSesion);
 
 		botonMiPerfil = new JButton("MI PERFIL");
 		botonMiPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.irAPantalla(NombrePantalla.MIPERFIL,
-						"PERFIL DE " + ventana.usuarioLogado.getNombre().toUpperCase());
+				ventana.irAPantalla(NombrePantalla.MIPERFIL);
 			}
 		});
 		botonMiPerfil.setEnabled(false);
@@ -67,12 +94,12 @@ public class PantallaPrincipal extends JPanel {
 		gbc_botonMiPerfil.insets = new Insets(0, 0, 5, 0);
 		gbc_botonMiPerfil.gridx = 0;
 		gbc_botonMiPerfil.gridy = 1;
-		panelEste.add(botonMiPerfil, gbc_botonMiPerfil);
+		panelNorte.add(botonMiPerfil, gbc_botonMiPerfil);
 
 		botonUbicacion = new JButton("UBICACIÓN");
 		botonUbicacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.irAPantalla(NombrePantalla.UBICACION, "Listado de ubicaciones");
+				ventana.irAPantalla(NombrePantalla.UBICACION);
 			}
 		});
 		botonUbicacion.setEnabled(false);
@@ -81,13 +108,12 @@ public class PantallaPrincipal extends JPanel {
 		gbc_botonUbicacion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_botonUbicacion.gridx = 0;
 		gbc_botonUbicacion.gridy = 2;
-		panelEste.add(botonUbicacion, gbc_botonUbicacion);
+		panelNorte.add(botonUbicacion, gbc_botonUbicacion);
 
 		botonLocalidades = new JButton("LOCALIDADES");
 		botonLocalidades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.irAPantalla(NombrePantalla.LOCALIDADES,
-						ventana.usuarioLogado.getNombre().toUpperCase() + ", SELECCIONA LOCALIDADES A AÑADIR");
+				ventana.irAPantalla(NombrePantalla.LOCALIDADES);
 			}
 		});
 		botonLocalidades.setEnabled(false);
@@ -96,13 +122,12 @@ public class PantallaPrincipal extends JPanel {
 		gbc_botonLocalidades.fill = GridBagConstraints.HORIZONTAL;
 		gbc_botonLocalidades.gridx = 0;
 		gbc_botonLocalidades.gridy = 3;
-		panelEste.add(botonLocalidades, gbc_botonLocalidades);
+		panelNorte.add(botonLocalidades, gbc_botonLocalidades);
 
 		botonCombustible = new JButton("COMBUSTIBLE");
 		botonCombustible.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.irAPantalla(NombrePantalla.COMBUSTIBLE,
-						ventana.usuarioLogado.getNombre().toUpperCase() + ", SELECCIONA EL COMBUSTIBLE ");
+				ventana.irAPantalla(NombrePantalla.COMBUSTIBLE);
 			}
 		});
 		botonCombustible.setEnabled(false);
@@ -111,21 +136,16 @@ public class PantallaPrincipal extends JPanel {
 		gbc_botonCombustible.fill = GridBagConstraints.HORIZONTAL;
 		gbc_botonCombustible.gridx = 0;
 		gbc_botonCombustible.gridy = 4;
-		panelEste.add(botonCombustible, gbc_botonCombustible);
-
-		botonBuscar = new JButton("BUSCAR");
-		botonBuscar.addActionListener(new ActionListener() {
+		panelNorte.add(botonCombustible, gbc_botonCombustible);
+		
+		botonSalir = new JButton("SALIR");
+		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.irAPantalla(NombrePantalla.GASOLINERAS, "Listado de Gasolineras");
+				System.exit(0);
 			}
 		});
-		botonBuscar.setEnabled(false);
-		GridBagConstraints gbc_botonBuscar = new GridBagConstraints();
-		gbc_botonBuscar.insets = new Insets(0, 0, 5, 0);
-		gbc_botonBuscar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_botonBuscar.gridx = 0;
-		gbc_botonBuscar.gridy = 5;
-		panelEste.add(botonBuscar, gbc_botonBuscar);
+		panelNorte.add(botonSalir);
 
 	}
+
 }

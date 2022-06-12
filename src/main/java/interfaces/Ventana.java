@@ -1,8 +1,11 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import java.awt.Color;
 
 import clases.PosicionDAO;
 import clases.UsuarioDAO;
@@ -16,10 +19,14 @@ public class Ventana extends JFrame {
 
 	public Ventana() {
 		this.setSize(700, 400);
+		this.setUndecorated(true);
+	//	setShape(new RoundRectangle2D.Double(0,0,this.getBounds().width,this.getBounds().height,50,50));
+		getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(100,230,124)));
 		this.setLocationRelativeTo(null);
 		this.setTitle("Gasolineras");
 		this.pantallaPrincipal = new PantallaPrincipal(this);
 		this.setContentPane(this.pantallaPrincipal);
+		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);

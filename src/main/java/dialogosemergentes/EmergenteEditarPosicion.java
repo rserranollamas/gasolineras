@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import clases.PosicionDAO;
 import clases.UsuarioDAO;
+import enums.NombrePantalla;
 import interfaces.Ventana;
 
 import java.awt.Font;
@@ -18,6 +19,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EmergenteEditarPosicion extends JDialog {
 	private Ventana ventana;
@@ -34,13 +37,13 @@ public class EmergenteEditarPosicion extends JDialog {
 		this.ventana = v;
 		this.usuario = u;
 		this.posicionAEditar = p;
-		this.setSize(500, 300);
+		this.setSize(438, 220);
 		getContentPane().setLayout(null);
 
 		JLabel labelCabecera = new JLabel("MODIFICAR UBICACIÓN");
 		labelCabecera.setHorizontalAlignment(SwingConstants.CENTER);
 		labelCabecera.setFont(new Font("Bauhaus 93", Font.PLAIN, 36));
-		labelCabecera.setBounds(10, 11, 401, 39);
+		labelCabecera.setBounds(10, 0, 401, 54);
 		getContentPane().add(labelCabecera);
 
 		JLabel labelInfo = new JLabel("Puedes modificar la ubicación si lo deseas");
@@ -53,21 +56,20 @@ public class EmergenteEditarPosicion extends JDialog {
 		getContentPane().add(labelLatitud);
 
 		botonLatitud = new JButton("Modificar Latitud");
-		botonLatitud.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonLatitud.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					posicionAEditar.setLatitud(Float.parseFloat(campoLatitud.getText()));
 					JOptionPane.showMessageDialog(ventana, "Latitud modificada con éxito", "Información",
 							JOptionPane.INFORMATION_MESSAGE);
 					botonLatitud.setEnabled(false);
+					ventana.irAPantalla(NombrePantalla.UBICACION);
 				} catch (NumberFormatException | SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 			}
 		});
-
 		botonLatitud.setEnabled(false);
 		botonLatitud.setBounds(264, 76, 134, 23);
 		getContentPane().add(botonLatitud);
@@ -101,14 +103,14 @@ public class EmergenteEditarPosicion extends JDialog {
 		getContentPane().add(campoLongitud);
 
 		botonLongitud = new JButton("Modificar Longitud");
-		botonLongitud.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonLongitud.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					posicionAEditar.setLongitud(Float.parseFloat(campoLongitud.getText()));
 					JOptionPane.showMessageDialog(ventana, "Longitud modificada con éxito", "Información",
 							JOptionPane.INFORMATION_MESSAGE);
 					botonLongitud.setEnabled(false);
+					ventana.irAPantalla(NombrePantalla.UBICACION);
 				} catch (NumberFormatException | SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
@@ -135,14 +137,14 @@ public class EmergenteEditarPosicion extends JDialog {
 		getContentPane().add(campoRadioKm);
 
 		botonRadioKm = new JButton("Modificar Radio");
-		botonRadioKm.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		botonRadioKm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					posicionAEditar.setRadioKm(Short.parseShort(campoRadioKm.getText()));
 					JOptionPane.showMessageDialog(ventana, "Radio modificado con éxito", "Información",
 							JOptionPane.INFORMATION_MESSAGE);
 					botonRadioKm.setEnabled(false);
+					ventana.irAPantalla(NombrePantalla.UBICACION);
 				} catch (NumberFormatException | SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();

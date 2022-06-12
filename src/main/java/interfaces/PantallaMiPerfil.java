@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class PantallaMiPerfil extends JPanel {
 	private Ventana ventana;
@@ -28,17 +29,21 @@ public class PantallaMiPerfil extends JPanel {
 	private JButton botonPassword;
 
 	public PantallaMiPerfil(Ventana v) {
+		setForeground(Color.WHITE);
 		this.ventana = v;
 		setLayout(null);
+		setOpaque(false);
 		
 		JLabel labelCabecera = new JLabel("MI PERFIL");
+		labelCabecera.setForeground(Color.WHITE);
 		labelCabecera.setFont(new Font("Bauhaus 93", Font.PLAIN, 36));
-		labelCabecera.setBounds(159, 11, 281, 54);
+		labelCabecera.setBounds(180, 11, 160, 54);
 		add(labelCabecera);
 		
 		JLabel labelDni = new JLabel("DNI");
+		labelDni.setForeground(Color.WHITE);
 		labelDni.setHorizontalAlignment(SwingConstants.LEFT);
-		labelDni.setBounds(39, 80, 56, 14);
+		labelDni.setBounds(60, 80, 56, 14);
 		add(labelDni);
 
 		botonDni = new JButton("Modificar DNI");
@@ -55,7 +60,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonDni.setEnabled(false);
-		botonDni.setBounds(346, 76, 160, 23);
+		botonDni.setBounds(366, 76, 160, 23);
 		add(botonDni);
 
 		campoDni = new JTextField(ventana.usuarioLogado.getDni());
@@ -66,12 +71,13 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		campoDni.setColumns(10);
-		campoDni.setBounds(149, 77, 191, 20);
+		campoDni.setBounds(170, 77, 191, 20);
 		add(campoDni);
 
 		JLabel labelNombre = new JLabel("Nombre");
+		labelNombre.setForeground(Color.WHITE);
 		labelNombre.setHorizontalAlignment(SwingConstants.LEFT);
-		labelNombre.setBounds(39, 111, 60, 14);
+		labelNombre.setBounds(60, 111, 60, 14);
 		add(labelNombre);
 
 		campoNombre = new JTextField(ventana.usuarioLogado.getNombre());
@@ -82,7 +88,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		campoNombre.setColumns(10);
-		campoNombre.setBounds(149, 108, 191, 20);
+		campoNombre.setBounds(170, 108, 191, 20);
 		add(campoNombre);
 
 		botonNombre = new JButton("Modificar Nombre");
@@ -99,11 +105,12 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonNombre.setEnabled(false);
-		botonNombre.setBounds(346, 107, 160, 23);
+		botonNombre.setBounds(366, 107, 160, 23);
 		add(botonNombre);
 
 		JLabel labelEmail = new JLabel("Email");
-		labelEmail.setBounds(39, 142, 60, 14);
+		labelEmail.setForeground(Color.WHITE);
+		labelEmail.setBounds(60, 142, 60, 14);
 		add(labelEmail);
 
 		campoEmail = new JTextField(ventana.usuarioLogado.getEmail());
@@ -114,7 +121,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		campoEmail.setColumns(10);
-		campoEmail.setBounds(149, 139, 191, 20);
+		campoEmail.setBounds(170, 139, 191, 20);
 		add(campoEmail);
 
 		botonEmail = new JButton("Modificar Email");
@@ -131,11 +138,12 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonEmail.setEnabled(false);
-		botonEmail.setBounds(346, 138, 160, 23);
+		botonEmail.setBounds(366, 138, 160, 23);
 		add(botonEmail);
 
 		JLabel labelPassword = new JLabel("Contrase\u00F1a");
-		labelPassword.setBounds(39, 173, 77, 14);
+		labelPassword.setForeground(Color.WHITE);
+		labelPassword.setBounds(60, 173, 77, 14);
 		add(labelPassword);
 
 		campoPassword = new JPasswordField();
@@ -145,11 +153,12 @@ public class PantallaMiPerfil extends JPanel {
 				habilitarPassword();
 			}
 		});
-		campoPassword.setBounds(149, 170, 191, 20);
+		campoPassword.setBounds(170, 170, 191, 20);
 		add(campoPassword);
 
 		JLabel labelPassword2 = new JLabel("Repita Contrase\u00F1a");
-		labelPassword2.setBounds(39, 204, 110, 14);
+		labelPassword2.setForeground(Color.WHITE);
+		labelPassword2.setBounds(60, 204, 110, 14);
 		add(labelPassword2);
 
 		campoPassword2 = new JPasswordField();
@@ -159,7 +168,7 @@ public class PantallaMiPerfil extends JPanel {
 				habilitarPassword();
 			}
 		});
-		campoPassword2.setBounds(149, 201, 191, 20);
+		campoPassword2.setBounds(170, 201, 191, 20);
 		add(campoPassword2);
 
 		botonPassword = new JButton("Modificar contrase\u00F1a");
@@ -185,7 +194,7 @@ public class PantallaMiPerfil extends JPanel {
 			}
 		});
 		botonPassword.setEnabled(false);
-		botonPassword.setBounds(346, 184, 160, 23);
+		botonPassword.setBounds(366, 184, 160, 23);
 		add(botonPassword);
 		
 	}

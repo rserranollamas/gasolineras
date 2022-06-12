@@ -19,10 +19,12 @@ public class ElementoListaGasolineras extends JPanel {
 	private Gasolinera gasolinera;
 
 	public ElementoListaGasolineras(Ventana v, Gasolinera g, String precio) {
-		setBorder(new LineBorder(new Color(255, 165, 0)));
+		setBackground(new Color(205,234,250));
+		setBorder(new LineBorder(new Color(100, 230, 124)));
+		setOpaque(false);
 		this.ventana = v;
 		this.gasolinera = g;
-
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 70, 165, 60, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 20, 15, 15, 15, 10, 0 };
@@ -31,6 +33,7 @@ public class ElementoListaGasolineras extends JPanel {
 		setLayout(gridBagLayout);
 
 		JLabel labelRotulo = new JLabel(gasolinera.getRotulo());
+		labelRotulo.setForeground(Color.WHITE);
 		labelRotulo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		labelRotulo.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_labelRotulo = new GridBagConstraints();
@@ -53,6 +56,7 @@ public class ElementoListaGasolineras extends JPanel {
 		add(iconoGasolinera, gbc_iconoGasolinera);
 
 		JLabel labelDireccion = new JLabel(gasolinera.getDireccion());
+		labelDireccion.setForeground(Color.WHITE);
 		labelDireccion.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_labelDireccion = new GridBagConstraints();
 		gbc_labelDireccion.anchor = GridBagConstraints.WEST;
@@ -62,6 +66,7 @@ public class ElementoListaGasolineras extends JPanel {
 		add(labelDireccion, gbc_labelDireccion);
 
 		JLabel labelLocalidad = new JLabel(gasolinera.getLocalidad() + ", " + gasolinera.getCodigoPostal());
+		labelLocalidad.setForeground(Color.WHITE);
 		labelLocalidad.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_labelLocalidad = new GridBagConstraints();
 		gbc_labelLocalidad.anchor = GridBagConstraints.WEST;
@@ -71,6 +76,7 @@ public class ElementoListaGasolineras extends JPanel {
 		add(labelLocalidad, gbc_labelLocalidad);
 
 		JLabel labelPrecio = new JLabel(precio + " €");
+		labelPrecio.setForeground(Color.WHITE);
 		labelPrecio.setFont(new Font("Tahoma", Font.BOLD, 15));
 		labelPrecio.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_labelPrecio = new GridBagConstraints();
@@ -82,6 +88,7 @@ public class ElementoListaGasolineras extends JPanel {
 		add(labelPrecio, gbc_labelPrecio);
 
 		JLabel labelProvincia = new JLabel(gasolinera.getProvincia());
+		labelProvincia.setForeground(Color.WHITE);
 		labelProvincia.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_labelProvincia = new GridBagConstraints();
 		gbc_labelProvincia.anchor = GridBagConstraints.WEST;

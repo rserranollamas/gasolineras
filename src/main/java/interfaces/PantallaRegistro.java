@@ -30,6 +30,7 @@ public class PantallaRegistro extends JPanel {
 	public PantallaRegistro(Ventana v) {
 		this.ventana = v;
 		setLayout(null);
+		setOpaque(false);
 
 		JLabel labelRegistro = new JLabel("REGISTRO");
 		labelRegistro.setBounds(193, 47, 136, 44);

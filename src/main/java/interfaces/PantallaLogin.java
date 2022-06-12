@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class PantallaLogin extends JPanel {
 	private Ventana ventana;
@@ -23,30 +24,29 @@ public class PantallaLogin extends JPanel {
 
 	public PantallaLogin(Ventana v) {
 		this.ventana = v;
+		this.setOpaque(false);
 		setLayout(null);
 
-		JLabel labelCabecera = new JLabel("INICIAR SESI\u00D3N");
-		labelCabecera.setBounds(167, 11, 216, 44);
-		labelCabecera.setFont(new Font("Bauhaus 93", Font.BOLD, 30));
-		add(labelCabecera);
-
 		JLabel labelUsuario = new JLabel("HOLA " + ventana.usuarioLogado.getNombre());
-		labelUsuario.setFont(new Font("Bauhaus 93", Font.BOLD, 20));
-		labelUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		labelUsuario.setBounds(37, 66, 453, 28);
+		labelUsuario.setForeground(Color.WHITE);
+		labelUsuario.setFont(new Font("Bauhaus 93", Font.BOLD, 25));
+		labelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		labelUsuario.setBounds(70, 80, 252, 28);
 		add(labelUsuario);
 
 		JLabel labelInfo = new JLabel("Por favor, introduce una contraseña para iniciar sesión.");
-		labelInfo.setBounds(48, 97, 453, 14);
+		labelInfo.setForeground(Color.WHITE);
+		labelInfo.setBounds(49, 11, 328, 14);
 		labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		add(labelInfo);
 
 		JLabel labelPassword = new JLabel("Contraseña");
-		labelPassword.setBounds(76, 122, 93, 14);
+		labelPassword.setForeground(Color.WHITE);
+		labelPassword.setBounds(49, 36, 93, 14);
 		add(labelPassword);
 
 		campoPassword = new JPasswordField();
-		campoPassword.setBounds(167, 119, 235, 20);
+		campoPassword.setBounds(131, 33, 160, 20);
 		add(campoPassword);
 
 		JButton botonLogin = new JButton("Login");
@@ -63,7 +63,8 @@ public class PantallaLogin extends JPanel {
 					ventana.pantallaPrincipal.botonUbicacion.setEnabled(true);
 					ventana.pantallaPrincipal.botonLocalidades.setEnabled(true);
 					ventana.pantallaPrincipal.botonCombustible.setEnabled(true);
-					ventana.pantallaPrincipal.botonBuscar.setEnabled(true);
+					ventana.pantallaPrincipal.botonLogout.setVisible(true);
+					ventana.pantallaPrincipal.botonLogin.setVisible(false);
 
 				} catch (SQLException | PassIncorrectoException | UsuarioNoExisteException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -71,7 +72,7 @@ public class PantallaLogin extends JPanel {
 				}
 			}
 		});
-		botonLogin.setBounds(167, 176, 223, 23);
+		botonLogin.setBounds(317, 32, 136, 23);
 		add(botonLogin);
 
 	}

@@ -7,6 +7,7 @@ import javax.swing.SwingConstants;
 
 import clases.PosicionDAO;
 import clases.UsuarioDAO;
+import enums.NombrePantalla;
 import interfaces.Ventana;
 
 import javax.swing.JButton;
@@ -30,13 +31,13 @@ public class EmergenteCrearPosicion extends JDialog {
 	public EmergenteCrearPosicion(Ventana v, UsuarioDAO u) {
 		this.ventana = v;
 		this.usuario = u;
-		this.setSize(500, 300);
+		this.setSize(414, 300);
 		getContentPane().setLayout(null);
 
 		JLabel labelCabecera = new JLabel("NUEVA UBICACIÓN");
 		labelCabecera.setHorizontalAlignment(SwingConstants.CENTER);
 		labelCabecera.setFont(new Font("Bauhaus 93", Font.PLAIN, 36));
-		labelCabecera.setBounds(10, 21, 414, 39);
+		labelCabecera.setBounds(0, 0, 398, 60);
 		getContentPane().add(labelCabecera);
 
 		JLabel labelLatitud = new JLabel("Latitud");
@@ -96,13 +97,14 @@ public class EmergenteCrearPosicion extends JDialog {
 							Short.parseShort(campoRadioKm.getText()), usuario);
 					JOptionPane.showMessageDialog(ventana, "Ubicación creada con éxito", "Información",
 							JOptionPane.INFORMATION_MESSAGE);
+					ventana.irAPantalla(NombrePantalla.UBICACION);
 				} catch (NumberFormatException | SQLException e1) {
 					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 			}
 		});
-		botonCrear.setBounds(164, 183, 121, 23);
+		botonCrear.setBounds(153, 185, 132, 36);
 		getContentPane().add(botonCrear);
 	}
 

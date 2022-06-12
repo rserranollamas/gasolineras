@@ -25,8 +25,10 @@ public class PantallaUbicacion extends JPanel {
 	public PantallaUbicacion(Ventana v) {
 		this.ventana = v;
 		setLayout(new BorderLayout(0, 0));
+		setOpaque(false);
 
 		JLabel labelTitulo = new JLabel("MIS UBICACIONES");
+		labelTitulo.setForeground(Color.WHITE);
 		labelTitulo.setFont(new Font("Bauhaus 93", Font.PLAIN, 25));
 		labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		add(labelTitulo, BorderLayout.NORTH);
@@ -42,10 +44,13 @@ public class PantallaUbicacion extends JPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
+	//	scrollPane.setOpaque(false);
 
 		JPanel listadoUbicaciones = new JPanel();
+		listadoUbicaciones.setBackground(new Color(26,84,130));
 		scrollPane.setViewportView(listadoUbicaciones);
 		listadoUbicaciones.setLayout(new BoxLayout(listadoUbicaciones, BoxLayout.Y_AXIS));
+	//	listadoUbicaciones.setOpaque(false);
 
 		ArrayList<PosicionDAO> todasPosiciones = ventana.usuarioLogado.getPosiciones();
 		for (byte i = 0; i < todasPosiciones.size(); i++) {
@@ -53,7 +58,7 @@ public class PantallaUbicacion extends JPanel {
 					todasPosiciones.get(i));
 			listadoUbicaciones.add(ubicacion);
 			if (ventana.usuarioLogado.posicionesBusqueda.contains(todasPosiciones.get(i))) {
-				ubicacion.setBackground(Color.GREEN);
+				ubicacion.setBackground(new Color(26,84,130));
 			}
 		}
 
