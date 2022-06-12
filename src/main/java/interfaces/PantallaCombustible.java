@@ -32,7 +32,7 @@ public class PantallaCombustible extends JPanel {
 	private Ventana ventana;
 	private JPanel listadoGasolineras;
 	private Image imagenFondo;
-	private String resultado="";
+	private String resultado = "";
 
 	public PantallaCombustible(Ventana v) {
 		this.ventana = v;
@@ -62,27 +62,29 @@ public class PantallaCombustible extends JPanel {
 		botonGrabar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					File archivo=new File("./archivos/gasolineras.txt");
-					if(archivo.exists()) {
+					File archivo = new File("./archivos/gasolineras.txt");
+					if (archivo.exists()) {
 						archivo.delete();
 					}
 					FileWriter escritor = new FileWriter("./archivos/gasolineras.txt", true);
 					escritor.write(resultado);
 					escritor.flush();
 					escritor.close();
+					JOptionPane.showMessageDialog(ventana, "Se ha grabado el fichero correctamente", "Información",
+							JOptionPane.INFORMATION_MESSAGE);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 			}
 		});
 		panelCabecera.add(botonGrabar);
-		
+
 		JButton botonLeer = new JButton("Leer");
 		botonLeer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EmergenteLeerFichero leerFichero=new EmergenteLeerFichero(ventana);
-				leerFichero.setVisible(true);	
+				EmergenteLeerFichero leerFichero = new EmergenteLeerFichero(ventana);
+				leerFichero.setVisible(true);
 			}
 		});
 		panelCabecera.add(botonLeer);
