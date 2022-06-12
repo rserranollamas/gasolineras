@@ -23,11 +23,11 @@ public class PantallaInicio extends JPanel {
 	private JTextField campoDni;
 	private JButton botonContinuar;
 
-	public PantallaInicio(Ventana v, String mensaje) {
+	public PantallaInicio(Ventana v) {
 		this.ventana = v;
 		setLayout(null);
 
-		JLabel labelCabecera = new JLabel(mensaje);
+		JLabel labelCabecera = new JLabel("INICIO");
 		labelCabecera.setBounds(120, 26, 264, 44);
 		labelCabecera.setFont(new Font("Bauhaus 93", Font.BOLD, 30));
 		add(labelCabecera);
@@ -61,12 +61,12 @@ public class PantallaInicio extends JPanel {
 						JOptionPane.showMessageDialog(ventana,
 								ventana.usuarioLogado.getNombre() + " bienvenid@ a Gasolineras APP", "HOLA DE NUEVO",
 								JOptionPane.INFORMATION_MESSAGE);
-						ventana.irAPantalla(NombrePantalla.LOGIN, dni);
+						ventana.irAPantalla(NombrePantalla.LOGIN);
 						
 					} catch (SQLException | UsuarioNoExisteException e1) {
 						JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
-						ventana.irAPantalla(NombrePantalla.REGISTRO, dni);
+						ventana.irAPantalla(NombrePantalla.REGISTRO);	
 					}
 				}
 			}
