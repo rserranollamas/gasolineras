@@ -27,7 +27,7 @@ public class PantallaRegistro extends JPanel {
 	private JPasswordField campoPassword2;
 	private JButton botonRegistrar;
 
-	public PantallaRegistro(Ventana v, String mensaje) {
+	public PantallaRegistro(Ventana v) {
 		this.ventana = v;
 		setLayout(null);
 
@@ -41,7 +41,7 @@ public class PantallaRegistro extends JPanel {
 		labelDni.setHorizontalAlignment(SwingConstants.LEFT);
 		add(labelDni);
 
-		campoDni = new JTextField(mensaje);
+		campoDni = new JTextField();
 		campoDni.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -128,7 +128,7 @@ public class PantallaRegistro extends JPanel {
 						ventana.usuarioLogado = new UsuarioDAO(dni, nombreUsuario, email, password);
 						JOptionPane.showMessageDialog(ventana, "Usuari@ registrad@ con éxito", "Registro completado",
 								JOptionPane.PLAIN_MESSAGE);
-						ventana.irAPantalla(NombrePantalla.LOGIN, dni);
+						ventana.irAPantalla(NombrePantalla.LOGIN);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
